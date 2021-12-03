@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <link rel="stylesheet" href="CSS/style.css" />
+        <meta charset="UTF-8" />
+        <title>Travel App Events</title>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    </head>
+    <body>
+       <!-- navigation -->
+        <header>
+        <h1><a href="/">Trip Planner</a></h1>
+            <nav><!-- Unordered list element -->
+                <ul>
+                    <!-- List item element-->
+                    <li>
+                        <a href="HTML/myTrips.html">My Trips</a>
+                    </li>
+                    <li>
+                        <a href="#events">Events</a>
+                    </li>
+                </ul>
+            </nav>
+        </header>
+
+  
+    <!-- hero -->
+    <section class="hero">
+        <div class="hero-img">
+            <!-- Add background image and alt text -->
+            <img src="images/" alt=""  class="hero-backgroundimg"/>
+        </div>
+    </section>
+
+    <!-- Already Here Section -->
+    <section id="events">
+        <div class="flex-row">
+        <h2 class="section-title secondary-border">Already on your trip? Find events going on near you!</h2>
+        </div>
+        <!-- events for today -->
+        <h3 class="todays-events">Find Events Going on Today</h3>
+            <form id="todays-form">
+                <div class="form-group">
+                    <!-- be able to select location -->
+                    <input type="text" name="trip-location" placeholder="Enter Your Location" />
+                    <!-- use current location -->
+                    <button class="btn" id="current-location" type="">Use Current Location</button>
+                </div>
+                <div class="form-group">
+                    <button class="btn" id="find-events" type="submit">Find Events</button>
+                    <!-- add know before you go link pop up after click event-->
+                </div>
+            </form>
+
+        <!-- events for later date -->
+            <h3 class="laterDate-events">Find Events Going on Later</h3>
+            <form id="laterDate-form">
+                <div class="form-group">
+                    <!-- be able to select location -->
+                    <input type="text" name="trip-location" placeholder="Enter Your Location" />
+                    <!-- use current location -->
+                    <button class="btn" id="current-location" type="">Use Current Location</button>
+                </div>
+                <div class="form-group">
+                    <!-- calander date picker goes here -->
+                    <input type="" name="trip-date" placeholder="Enter Trip Date" />
+                </div>
+                <div class="form-group">
+                    <button class="btn" id="find-events" type="submit">Find Events</button>
+                    <!-- add know before you go link pop up after click event-->
+                </div>
+            </form>
+
+    </section>
+
+    <script src="script.js"></script>
+  </body>
+</html>
+
+<!--  -->
