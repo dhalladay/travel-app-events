@@ -1,11 +1,14 @@
 <!DOCTYPE html>
 <html lang="en">
+
     <head>
-        <link rel="stylesheet" href="./assets/CSS/style.css" />
-        <meta charset="UTF-8" />
-        <title>Travel App Events</title>
-        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+      <meta charset="UTF-8" />
+      <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+      <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.3.1/css/bootstrap.min.css">
+      <link rel="stylesheet" href="./assets/CSS/style.css" />
+      <title>Travel App Events</title>
     </head>
+    
     <body>
        <!-- navigation -->
         <header>
@@ -57,45 +60,48 @@
     <section id="eventsHomePage">
         <div class="flex-row">
         <h2 class="section-title secondary-border" id="event-title-alreadyInTown">Already in town? Find events going on near you!</h2>
+          
+<!-- modals -->
+  <div id="search-modal" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="search-error" aria-describedby="search-help" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h3 id="search-error">No results</h3>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
         </div>
-        <!-- events for today -->
-        <h3 class="todays-events">Find Events Going on Today</h3>
-            <form id="todays-form">
-                <div class="form-group">
-                    <!-- be able to select location -->
-                    <input type="text" name="trip-location" placeholder="Enter Your Location" />
-                    <!-- use current location -->
-                    <button class="btn" id="current-location" type="">Use Current Location</button>
-                </div>
-                <div class="form-group">
-                    <button class="btn" id="find-events" type="submit">Find Events</button>
-                    <!-- add know before you go link pop up after click event-->
-                </div>
-            </form>
+        <div class="modal-body">
+          <p id ="search-help">Make sure you are using the full city name, including the word 'city', in such cases as New York City or Salt Lake City.</p>
+        </div>
+      </div>
+    </div>
+  </div>
 
-        <!-- events for later date -->
-            <h3 class="laterDate-events">Find Events Going on Later</h3>
-            <form id="laterDate-form">
-                <div class="form-group">
-                    <!-- be able to select location -->
-                    <input type="text" name="trip-location" placeholder="Enter Your Location" />
-                    <!-- use current location -->
-                    <button class="btn" id="current-location" type="">Use Current Location</button>
-                </div>
-                <div class="form-group">
-                    <!-- calander date picker goes here -->
-                    <input type="" name="trip-date" placeholder="Enter Trip Date" />
-                </div>
-                <div class="form-group">
-                    <button class="btn" id="find-events" type="submit">Find Events</button>
-                    <!-- add know before you go link pop up after click event-->
-                </div>
-            </form>
 
-    </section>
 
-    <script src="./assets/js/script.js"></script>
-  </body>
+  <div id="connect-modal" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="connection-error" aria-describedby="connection-help" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h3 id="connection-error">Connection Error</h3>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+          <p id ="connection-help">We are unable to connect to TicketMaster. <a href="https://www.ticketmaster.com/" target="_blank" title="Go to ticketmaster.com">Head over there to see what's going on.</a></p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.3.1/js/bootstrap.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.29.1/moment.min.js"></script>
+  <script src="./assets/js/script.js"></script>
+</body>
+
 </html>
 
 <!--  -->
