@@ -29,23 +29,22 @@ var getEventsRepos = function(array) {
   .then(function(response) {
     if(response.ok) {
       response.json().then(function(data) {
-        console.log(data);
+        console.log(data.page.totalPages === 0);
+        if (data.page.totalPages === 0) {
+          $("#search-modal").modal("show");
+        } else {
         var eventsArray = data._embedded.events;
         //send fetch data to function that will gather data needed for display
         createEventArray(eventsArray);
+        }
       });
     } else {
-      console.log("failed");
-      $("#search-modal").on("shown.b.modal", function () {
-        $('.close').trigger('focus')
-    });
+      $("#search-modal").modal("show");
     }
   }) 
   .catch(function(error) {
       console.log("unable to connect");
-      $("#connect-modal").on("show.bs.modal", function() {
-        $('.close').trigger('focus')
-      });
+      $("#connect-modal").modal("show");
   });
   };
 
