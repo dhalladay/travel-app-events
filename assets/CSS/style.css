@@ -70,7 +70,7 @@ section {
   text-align: center
 }
 #eventsHomePage {
-background-image: url(../Images/india-top-attractions-varanasi.jpg);
+background-image: url(../images/india-top-attractions-varanasi.jpg);
 width: 35%;
 height: 450px;
 text-align: center;
@@ -84,7 +84,7 @@ float:right;
 }
 
 #myTripsHomePage {
-  background-image: url(../Images/best-places-to-visit-in-july.jpg);
+  background-image: url(../images/best-places-to-visit-in-july.jpg);
   height: 450px;
   width: 30%;
   text-align: center;
@@ -97,7 +97,7 @@ float:right;
   float: left;
   }
   #planTripsHomePage {
-    background-image: url(../Images/Flights-to-RSW-Make-Southwest-Florida-Accessible-From-Anywhere.jpg);
+    background-image: url(../images/Flights-to-RSW-Make-Southwest-Florida-Accessible-From-Anywhere.jpg);
     width: 35%;
     height: 450px;
     text-align: center;

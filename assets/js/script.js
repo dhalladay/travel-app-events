@@ -1,6 +1,6 @@
 //var array will have city name, start and end dates
 var array={
-  city:"denvor",
+  city:"denver",
   startDate:"2022-07-03",
   endDate:"2022-07-05",
   country: "US"

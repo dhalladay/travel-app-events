@@ -27,7 +27,6 @@
 
     <!-- Plan Trip -->
   <main>
-
     <section id="planTripsHomePage">
       <div class="flex-row">
         <h2 class="section-title secondary-border">Plan a Trip</h2>
@@ -44,13 +43,13 @@
           <input type="" name="trip-end-date" placeholder="Enter Trip End Date" />
         </div>
         <div class="form-group">
-          <button class="btn" id="submit-trip" type="submit">Submit Trip</button>
+          <button class="btn btn-light btn-sm" id="submit-trip" type="submit">Submit Trip</button>
           <!-- add know before you go link pop up after click event-->
         </div>
       </form>
     </section>
-            
-          <!-- My trips -->
+    
+    <!-- My trips -->
     <section id="myTripsHomePage">
       <div>
         <a href="HTML/myTrips.html">My Trips</a>
@@ -69,10 +68,10 @@
           <!-- be able to select location -->
           <input type="text" name="trip-location" placeholder="Enter Your Location" />
           <!-- use current location -->
-          <button class="btn" id="current-location" type="">Use Current Location</button>
+          <button class="btn btn-light btn-sm" id="current-location" type="">Use Current Location</button>
         </div>
         <div class="form-group">
-          <button class="btn" id="find-events" type="submit">Find Events</button>
+          <button class="btn btn-light btn-sm" id="find-events" type="submit">Find Events</button>
           <!-- add know before you go link pop up after click event-->
         </div>
       </form>
@@ -84,54 +83,53 @@
           <!-- be able to select location -->
           <input type="text" name="trip-location" placeholder="Enter Your Location" />
           <!-- use current location -->
-          <button class="btn" id="current-location" type="">Use Current Location</button>
+          <button class="btn btn-light btn-sm" id="current-location" type="">Use Current Location</button>
         </div>
         <div class="form-group">
           <!-- calander date picker goes here -->
           <input type="" name="trip-date" placeholder="Enter Trip Date" />
         </div>
         <div class="form-group">
-          <button class="btn" id="find-events" type="submit">Find Events</button>
+          <button class="btn btn-light btn-sm" id="find-events" type="submit">Find Events</button>
           <!-- add know before you go link pop up after click event-->
         </div>
-      </form>
-      
+      </form>  
     </section>
   </main>
-
-  <!-- modals -->
-  <!-- search error modal -->
-  <div id="search-modal" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="search-error" aria-describedby="search-help" aria-hidden="true">
-    <div class="modal-dialog modal-dialog-centered" role="document">
-      <div class="modal-content">
-        <div class="modal-header">
-          <h3 id="search-error">No results</h3>
-          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-            <span aria-hidden="true">&times;</span>
-          </button>
-        </div>
-        <div class="modal-body">
-          <p id ="search-help">Make sure you are using the full city name, including the word 'city', in such cases as New York City or Salt Lake City.</p>
-        </div>
-      </div>
-    </div>
-  </div>
-  <!-- connection error modal -->
-  <div id="connect-modal" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="connection-error" aria-describedby="connection-help" aria-hidden="true">
-    <div class="modal-dialog modal-dialog-centered" role="document">
-      <div class="modal-content">
-        <div class="modal-header">
-          <h3 id="connection-error">Connection Error</h3>
-          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-            <span aria-hidden="true">&times;</span>
-          </button>
-        </div>
-        <div class="modal-body">
-          <p id ="connection-help">We are unable to connect to TicketMaster. <a href="https://www.ticketmaster.com/" target="_blank" title="Go to ticketmaster.com">Head over there to see what's going on.</a></p>
+    
+    <!-- modals -->
+    <!-- search error modal -->
+    <div id="search-modal" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="search-error" aria-describedby="search-help" aria-hidden="true">
+      <div class="modal-dialog modal-dialog-centered" role="document">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h3 id="search-error">No results</h3>
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+              <span aria-hidden="true">&times;</span>
+            </button>
+          </div>
+          <div class="modal-body">
+            <p id ="search-help">Make sure you are using the full city name, including the word 'city', in such cases as New York City or Salt Lake City.</p>
+          </div>
         </div>
       </div>
     </div>
-  </div>
+    <!-- connection error modal -->
+    <div id="connect-modal" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="connection-error" aria-describedby="connection-help" aria-hidden="true">
+      <div class="modal-dialog modal-dialog-centered" role="document">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h3 id="connection-error">Connection Error</h3>
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+              <span aria-hidden="true">&times;</span>
+            </button>
+          </div>
+          <div class="modal-body">
+            <p id ="connection-help">We are unable to connect to TicketMaster. <a href="https://www.ticketmaster.com/" target="_blank" title="Go to ticketmaster.com">Head over there to see what's going on.</a></p>
+          </div>
+        </div>
+      </div>
+    </div>
 
   <!-- script references -->
   <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
