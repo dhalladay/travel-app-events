@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
     <head>
-        <link rel="stylesheet" href="CSS/style.css" />
+        <link rel="stylesheet" href="./Assets/CSS/style.css" />
         <meta charset="UTF-8" />
         <title>Travel App Events</title>
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -17,25 +17,46 @@
                         <a href="HTML/myTrips.html">My Trips</a>
                     </li>
                     <li>
-                        <a href="#events">Events</a>
+                        <a>Home</a>
                     </li>
                 </ul>
             </nav>
         </header>
 
+    <!-- Plan Trip -->
+    <section id="planTripsHomePage">
+        <div class="flex-row">
+            <h2 class="section-title secondary-border">Plan a Trip</h2>
+        </div>
+        <!-- Fill out form -->
+            <form id="plan-form">
+                <div class="form-group">
+                    <!-- be able to select location -->
+                    <input type="text" name="trip-location" placeholder="Enter the trips Location" />
+                </div>
+                <div class="form-group">
+                    <!-- calander date picker goes here -->
+                    <input type="" name="trip-start-date" placeholder="Enter Trip Start Date" />
+                    <input type="" name="trip-end-date" placeholder="Enter Trip End Date" />
+                </div>
+                <div class="form-group">
+                    <button class="btn" id="submit-trip" type="submit">Submit Trip</button>
+                    <!-- add know before you go link pop up after click event-->
+                </div>
+            </form>
+    </section>
   
-    <!-- hero -->
-    <section class="hero">
-        <div class="hero-img">
-            <!-- Add background image and alt text -->
-            <img src="images/" alt=""  class="hero-backgroundimg"/>
+    <!-- My trips -->
+    <section id="myTripsHomePage">
+        <div>
+            <a href="HTML/myTrips.html">My Trips</a>
         </div>
     </section>
 
     <!-- Already Here Section -->
-    <section id="events">
+    <section id="eventsHomePage">
         <div class="flex-row">
-        <h2 class="section-title secondary-border">Already on your trip? Find events going on near you!</h2>
+        <h2 class="section-title secondary-border" id="event-title-alreadyInTown">Already in town? Find events going on near you!</h2>
         </div>
         <!-- events for today -->
         <h3 class="todays-events">Find Events Going on Today</h3>
@@ -73,7 +94,7 @@
 
     </section>
 
-    <script src="script.js"></script>
+    <script src="./Assets/js/script.js"></script>
   </body>
 </html>
 
