@@ -1,7 +1,3 @@
-var searchModalEl = document.getElementById("search-modal");
-var connectModalEl = document.getElementById("connect-modal");
-var spanEl = document.getElementsByClassName("close");
-
 //var array will have city name, start and end dates
 var array={
   city:"denvor",
