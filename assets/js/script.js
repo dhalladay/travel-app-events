@@ -1,20 +1,29 @@
+var searchModalEl = document.getElementById("search-modal");
+var connectModalEl = document.getElementById("connect-modal");
+var spanEl = document.getElementsByClassName("close");
 
 //var array will have city name, start and end dates
 var array={
-  city:"denver",
+  city:"denvor",
   startDate:"2022-07-03",
-  month: "07",
-  year: "2022",
+  endDate:"2022-07-05",
+  country: "US"
+};
+
+var holidaySearch = {
+  startDate:"2022-07-03",
   endDate:"2022-07-05",
   country: "US"
 };
 
 //create function to receive user input and search ticketmaster
-var getEventsRepos = function() {
-
+var getEventsRepos = function(array) {
+  var city = array.city;
+  var start = array.startDate;
+  var end = array.endDate;
   //ticketmaster API search with dynamic content
-  var apiURL = "https://app.ticketmaster.com/discovery/v2/events.json?apikey=nmIDSJ3YAMVW3F9ZJYGySEgG4V1kQlCZ&city=" + array.city + "&startDateTime=" + array.startDate + "T12:00:00Z&endDateTime=" + array.endDate + "T23:59:00Z&sort=date,asc";
-
+  var apiURL = "https://app.ticketmaster.com/discovery/v2/events.json?apikey=nmIDSJ3YAMVW3F9ZJYGySEgG4V1kQlCZ&city=" + city + "&startDateTime=" + start + "T12:00:00Z&endDateTime=" + end + "T23:59:00Z&sort=date,asc";
+  
   //fetch request to ticketmaster
   fetch(apiURL)
   .then(function(response) {
@@ -26,15 +35,21 @@ var getEventsRepos = function() {
         createEventArray(eventsArray);
       });
     } else {
-      console.log("No data found");
+      console.log("failed");
+      $("#search-modal").on("shown.b.modal", function () {
+        $('.close').trigger('focus')
+    });
     }
   }) 
   .catch(function(error) {
-    alert('Unable to connect to ticketmaster');
+      console.log("unable to connect");
+      $("#connect-modal").on("show.bs.modal", function() {
+        $('.close').trigger('focus')
+      });
   });
   };
 
-  getEventsRepos();
+  getEventsRepos(array);
 
 //create function to take api response data, modify it and send to display function
  var createEventArray = function(eventsArray) {
@@ -54,6 +69,7 @@ var getEventsRepos = function() {
    }
    console.log(ticketObj);
  };
+
 
 
 
