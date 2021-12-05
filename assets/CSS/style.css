@@ -18,7 +18,7 @@ header {
   position: -webkit-sticky;
   position: sticky;
   top: 0;
-  /* background-image: url("../images/hero-bg.jpg"); */
+  background-image: url("../images/hero-bg.jpg");
   background-size: cover;
   background-attachment: fixed;
   background-position: 80%;
@@ -128,7 +128,7 @@ float:right;
   border-color: #ffffff;
 }
 
-h3{
+main h3{
   font-size: 17px;
   color: rgb(255, 255, 255);
   border-bottom: 2px solid;
