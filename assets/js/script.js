@@ -1,30 +1,106 @@
+var cityNameInput = document.querySelector("#city-input");
+var startDateInput = document.querySelector("#start-date-input");
+var endDateInput = document.querySelector("#end-date-input");
+
+$('#submit-trip').click(function(event) {
+  event.preventDefault();
+  if (!cityNameInput.value || !startDateInput.value || !endDateInput.value) {
+    alert("Missing search data");
+  } else {
+    var citySearch = cityNameInput.value
+    .trim()
+    .toLowerCase()
+    .replace(" ", "+");
+    var startSearch = startDateInput.value;
+    var endSearch = endDateInput.value;
+    getEventsRepos(citySearch, startSearch, endSearch);
+    cityNameInput.value = "";
+    startDateInput.value="";
+    endDateInput.value="";    
+  };
+});
+
 var array = {
   city: "denver",
   startDate: "2022-07-04",
-  month: "07",
-  year: "2022",
   endDate: "2022-07-06",
   country: "US",
 };
 
-// Returns an array of dates between the two dates
-let startDate = moment(array.startDate);
-let endDate = moment(array.endDate);
-let datesArray = [];
+var holidaySearch = {
+  startDate:"2022-07-03",
+  endDate:"2022-07-05",
+  country: "US"
+};
 
-for (var m = moment(startDate); m.isSameOrBefore(endDate); m.add(1, "days")) {
-  datesArray.push(m.format("YYYY-MM-DD"));
-}
+//create function to receive user input and search ticketmaster
+var getEventsRepos = function(citySearch, startSearch, endSearch) {
+  var city = citySearch
+  var start = startSearch;
+  var end = endSearch;
+  //ticketmaster API search with dynamic content
+  var apiURL = "https://app.ticketmaster.com/discovery/v2/events.json?apikey=nmIDSJ3YAMVW3F9ZJYGySEgG4V1kQlCZ&city=" + city + "&startDateTime=" + start + "T12:00:00Z&endDateTime=" + end + "T23:59:00Z&sort=date,asc";
+  
+  //fetch request to ticketmaster
+  fetch(apiURL)
+  .then(function(response) {
+    if(response.ok) {
+      response.json().then(function(data) {
+        if (data.page.totalPages === 0) {
+          $("#search-modal").modal("show");
+        } else {
+          var eventsArray = data._embedded.events;
+          //send fetch data to function that will gather data needed for display
+          createEventArray(eventsArray, start, end);
+        }
+      });
+    } else {
+      $("#search-modal").modal("show");
+    }
+  }) 
+  .catch(function(error) {
+    console.log("unable to connect");
+    $("#connect-modal").modal("show");
+  });
+};
+  
+//create function to take api response data, modify it and send to display function
+ var createEventArray = function(eventsArray, start, end) {
+   //create object to hold events
+   var ticketObj = [];
+   //create tempArr variable so events can be pushed to ticket array object
+   tempArr = {};
+   for (var i=0; i < eventsArray.length; i++) {
+     var eventName=eventsArray[i].name;
+     var eventDate=eventsArray[i].dates.start.localDate;
+     var eventUrl=eventsArray[i].url;
+     //create variable for country code that can be sent to holiday API
+     var eventCountryCode=eventsArray[i]._embedded.venues[0].country.countryCode;
+     tempArr = {eventName,eventDate,eventUrl};
+     ticketObj.push(tempArr);
+   }
+   console.log(ticketObj);
+   getHoliday(eventCountryCode, start, end);
+ };
 
-console.log(datesArray);
-
-// get holiday API
-var getHoliday = function () {
+ 
+ // get holiday API
+ var getHoliday = function (eventCountryCode, start, end) {
+  // Returns an array of dates between the two dates
+  let startDate = moment(start);
+  let endDate = moment(end);
+  let datesArray = [];
+  
+  for (var m = moment(startDate); m.isSameOrBefore(endDate); m.add(1, "days")) {
+    datesArray.push(m.format("YYYY-MM-DD"));
+  }
+  
+  console.log(datesArray);
   for (var i = 0; datesArray.length; i++) {
     // setTimeout(function () {
       var holidayUrl =
         "https://holidays.abstractapi.com/v1/?api_key=914c5cd8cbee4eac81585b5ed13d510d&country=" +
-        array.country +
+        eventCountryCode +
         "&year=" +
         datesArray[i].split("-")[0] +
         "&month=" +
@@ -40,7 +116,7 @@ var getHoliday = function () {
     // }, 1000);
   }
 };
-getHoliday();
+// getHoliday();
 
 
 // fetch(holidayUrl)
@@ -57,71 +133,7 @@ getHoliday();
 //     alert("Unable to connect to Abstract holiday API");
 //   });
 //var array will have city name, start and end dates
-var array={
-  city:"denver",
-  startDate:"2022-07-03",
-  endDate:"2022-07-05",
-  country: "US"
-};
 
-var holidaySearch = {
-  startDate:"2022-07-03",
-  endDate:"2022-07-05",
-  country: "US"
-};
-
-//create function to receive user input and search ticketmaster
-var getEventsRepos = function(array) {
-  var city = array.city;
-  var start = array.startDate;
-  var end = array.endDate;
-  //ticketmaster API search with dynamic content
-  var apiURL = "https://app.ticketmaster.com/discovery/v2/events.json?apikey=nmIDSJ3YAMVW3F9ZJYGySEgG4V1kQlCZ&city=" + city + "&startDateTime=" + start + "T12:00:00Z&endDateTime=" + end + "T23:59:00Z&sort=date,asc";
-  
-  //fetch request to ticketmaster
-  fetch(apiURL)
-  .then(function(response) {
-    if(response.ok) {
-      response.json().then(function(data) {
-        console.log(data.page.totalPages === 0);
-        if (data.page.totalPages === 0) {
-          $("#search-modal").modal("show");
-        } else {
-        var eventsArray = data._embedded.events;
-        //send fetch data to function that will gather data needed for display
-        createEventArray(eventsArray);
-        }
-      });
-    } else {
-      $("#search-modal").modal("show");
-    }
-  }) 
-  .catch(function(error) {
-      console.log("unable to connect");
-      $("#connect-modal").modal("show");
-  });
-  };
-
-  getEventsRepos(array);
-
-//create function to take api response data, modify it and send to display function
- var createEventArray = function(eventsArray) {
-   //create object to hold events
-   var ticketObj = [];
-   //create tempArr variable so events can be pushed to ticket array object
-   tempArr = {};
-   for (var i=0; i < eventsArray.length; i++) {
-     var eventName=eventsArray[i].name;
-     var eventDate=eventsArray[i].dates.start.localDate;
-     var eventUrl=eventsArray[i].url;
-     var eventCity=eventsArray[i]._embedded.venues[0].city.name;
-     //create variable for country code that can be sent to holiday API
-     var eventCountryCode=eventsArray[i]._embedded.venues[0].country.countryCode;
-     tempArr = {eventName,eventDate,eventUrl};
-     ticketObj.push(tempArr);
-   }
-   console.log(ticketObj);
- };
 
 
 
@@ -158,4 +170,6 @@ var getEventsRepos = function(array) {
 //my trips page
 //shows them all the events they selected or created in a card
 //display any other events they created
+//plus icon will take them to plan a trip modal and functionality
+// splay any other events they created
 //plus icon will take them to plan a trip modal and functionality

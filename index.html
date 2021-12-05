@@ -35,12 +35,19 @@
       <form id="plan-form">
         <div class="form-group">
           <!-- be able to select location -->
-          <input type="text" name="trip-location" placeholder="Enter the trips Location" />
+          <label for="city-input">City Name: </label>
+          <input id="city-input" type="text" name="trip-location" placeholder="eg. new york city" />
         </div>
         <div class="form-group">
           <!-- calander date picker goes here -->
-          <input type="" name="trip-start-date" placeholder="Enter Trip Start Date" />
-          <input type="" name="trip-end-date" placeholder="Enter Trip End Date" />
+          <div id="start-date-div">
+            <label for="start-date-input">Trip start Date: </label>
+            <input id="start-date-input" type="text" name="trip-start-date" placeholder="yyyy-mm-dd" />
+          </div>
+          <div id="end-date-div">
+            <label for="end-date-input">Trip end Date: </label>
+            <input id="end-date-input" type="text" name="trip-end-date" placeholder="yyyy-mm-dd" />
+          </div>
         </div>
         <div class="form-group">
           <button class="btn btn-light btn-sm" id="submit-trip" type="submit">Submit Trip</button>
@@ -119,13 +126,13 @@
       <div class="modal-dialog modal-dialog-centered" role="document">
         <div class="modal-content">
           <div class="modal-header">
-            <h3 id="connection-error">Connection Error</h3>
+            <h3 id="connection-error">We are unable to find any events</h3>
             <button type="button" class="close" data-dismiss="modal" aria-label="Close">
               <span aria-hidden="true">&times;</span>
             </button>
           </div>
           <div class="modal-body">
-            <p id ="connection-help">We are unable to connect to TicketMaster. <a href="https://www.ticketmaster.com/" target="_blank" title="Go to ticketmaster.com">Head over there to see what's going on.</a></p>
+            <p id ="connection-help">Your search returned no results. Please verify you have spelled the city name correctly and are including "city" if applicable (eg 'salt lake city'). If you keep receiving this response, head over to <a href="https://www.ticketmaster.com/" target="_blank" title="Go to ticketmaster.com">ticketmaster.com</a> to continue your search.</p>
           </div>
         </div>
       </div>
