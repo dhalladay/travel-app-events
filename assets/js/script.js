@@ -13,25 +13,23 @@ $('#submit-trip').click(function(event) {
     .replace(" ", "+");
     var startSearch = startDateInput.value;
     var endSearch = endDateInput.value;
-    getEventsRepos(citySearch, startSearch, endSearch);
-    cityNameInput.value = "";
-    startDateInput.value="";
-    endDateInput.value="";    
+    window.location.href = "./HTML/events.html?city=" + citySearch + "&startDate=" + startSearch + "&endDate=" + endSearch;
+    // getEventsRepos(citySearch, startSearch, endSearch);  
   };
 });
 
-var array = {
-  city: "denver",
-  startDate: "2022-07-04",
-  endDate: "2022-07-06",
-  country: "US",
-};
+// var array = {
+//   city: "denver",
+//   startDate: "2022-07-04",
+//   endDate: "2022-07-06",
+//   country: "US",
+// };
 
-var holidaySearch = {
-  startDate:"2022-07-03",
-  endDate:"2022-07-05",
-  country: "US"
-};
+// var holidaySearch = {
+//   startDate:"2022-07-03",
+//   endDate:"2022-07-05",
+//   country: "US"
+// };
 
 //create function to receive user input and search ticketmaster
 var getEventsRepos = function(citySearch, startSearch, endSearch) {

@@ -1,4 +1,28 @@
 var eventContainerEl = document.querySelector("#events-container");
+var queryString = document.location.search;
+
+var searchStrings = function(queryString) {
+  //split string into key pairs
+  var splitQuery = queryString.split("&");
+  //extract city from city query parameter
+  var cityString = splitQuery[0];
+  var splitCity = cityString.split("=");
+  var city = splitCity[1];
+  //extract startDate from start parameter
+  var startString = splitQuery[1];
+  var splitStart = startString.split('=');
+  var start = splitStart[1]
+  //extract endDate from end parameter
+  var endString = splitQuery[2]
+  var splitEnd = endString.split("=");
+  var end = splitEnd[1];
+  console.log(city, start, end);
+
+}
+
+searchStrings(queryString);
+
+// console.log(queryString.split("&"));
 
 // var ticketObj = [{
 //   eventDate:"2022-07-03",
@@ -45,4 +69,4 @@ var displayEvents = function(ticketObj) {
   }
 };
 
-displayEvents(ticketObj);
+// displayEvents(ticketObj);
