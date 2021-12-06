@@ -1,28 +1,72 @@
 <!DOCTYPE html>
 <html>
-    <head>
-    <title>My Trips</title>
-    <link href="../assets/CSS/style.css" rel="stylesheet">
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  </head>
-  <body>
-      <!-- navigation -->
-      <header>
-        <h1><a href="/">Trip Planner</a></h1>
-            <nav><!-- Unordered list element -->
-                <ul>
-                    <!-- List item element-->
-                    <li>
-                        <a href="myTrips.html">My Trips</a>
-                    </li>
-                    <li>
-                        <a href="../index.html">Home</a>
-                    </li>
-                </ul>
-            </nav>
-        </header>
-    
-    <script src="../assets/js/events.js"></script>
-  </body>
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Event Search</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.3.1/css/bootstrap.min.css">
+  <link href="../assets/CSS/style.css" rel="stylesheet">
+</head>
+<body>
+  <!-- navigation -->
+  <header>
+    <h1><a href="/">Trip Planner</a></h1>
+    <nav><!-- Unordered list element -->
+      <ul>
+        <!-- List item element-->
+        <li>
+            <a href="myTrips.html">My Trips</a>
+        </li>
+        <li>
+            <a href="../index.html">Home</a>
+        </li>
+      </ul>
+    </nav>
+  </header>
+  <main>
+    <div id="events-container">
+      
+    </div>
+  </main>
+
+  <!-- modals -->
+  <!-- search error modal -->
+  <div id="search-modal" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="search-error" aria-describedby="search-help" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h3 id="search-error">No results</h3>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+          <p id ="search-help">Make sure you are using the full city name, including the word 'city', in such cases as New York City or Salt Lake City.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+  <!-- connection error modal -->
+  <div id="connect-modal" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="connection-error" aria-describedby="connection-help" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h3 id="connection-error">We are unable to find any events</h3>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+          <p id ="connection-help">Your search returned no results. Please verify you have spelled the city name correctly and are including "city" if applicable (eg 'salt lake city'). If you keep receiving this response, head over to <a href="https://www.ticketmaster.com/" target="_blank" title="Go to ticketmaster.com">ticketmaster.com</a> to continue your search.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+  <!-- script references -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.3.1/js/bootstrap.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.24.0/moment.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.29.1/moment.min.js"></script>
+  <script src="../assets/js/events.js"></script>
+</body>
 </html>
