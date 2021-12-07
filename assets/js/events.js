@@ -1,6 +1,7 @@
 var eventContainerEl = document.querySelector("#events-container");
 var queryString = document.location.search;
 
+
 var searchStrings = function(queryString) {
   //split string into key pairs
   var splitQuery = queryString.split("&");
@@ -16,7 +17,8 @@ var searchStrings = function(queryString) {
   var endString = splitQuery[2]
   var splitEnd = endString.split("=");
   var endSearch = splitEnd[1];
-  getEventsRepos(citySearch, startSearch, endSearch);
+  // getEventsRepos(citySearch, startSearch, endSearch);
+  console.log(citySearch, startSearch, endSearch);
 }
 
 //create function to receive user input and search ticketmaster

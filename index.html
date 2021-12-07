@@ -73,12 +73,11 @@
       <form id="todays-form">
         <div class="form-group">
           <!-- be able to select location -->
-          <input type="text" name="trip-location" placeholder="Enter Your Location" />
-          <!-- use current location -->
-          <button class="btn btn-light btn-sm" id="current-location" type="">Use Current Location</button>
+          <label for="current-city">Search for events in: </label>
+          <input id="current-city" type="text" name="current-location" placeholder="Enter Your Location" />
         </div>
         <div class="form-group">
-          <button class="btn btn-light btn-sm" id="find-events" type="submit">Find Events</button>
+          <button class="btn btn-light btn-sm" id="find-today-events" type="submit">Find Events</button>
           <!-- add know before you go link pop up after click event-->
         </div>
       </form>
@@ -88,16 +87,16 @@
       <form id="laterDate-form">
         <div class="form-group">
           <!-- be able to select location -->
-          <input type="text" name="trip-location" placeholder="Enter Your Location" />
-          <!-- use current location -->
-          <button class="btn btn-light btn-sm" id="current-location" type="">Use Current Location</button>
+          <label for="future-city">Search for events in: </label>
+          <input id="future-city" type="text" name="future-destination" placeholder="Enter Your Location" />
         </div>
         <div class="form-group">
           <!-- calander date picker goes here -->
-          <input type="" name="trip-date" placeholder="Enter Trip Date" />
+          <label for="future-date">Search for events on: </label>
+          <input id="future-date" type="" name="trip-date" placeholder="Enter Trip Date" />
         </div>
         <div class="form-group">
-          <button class="btn btn-light btn-sm" id="find-events" type="submit">Find Events</button>
+          <button class="btn btn-light btn-sm" id="find-future-events" type="submit">Find Events</button>
           <!-- add know before you go link pop up after click event-->
         </div>
       </form>  

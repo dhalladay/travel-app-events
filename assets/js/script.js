@@ -1,7 +1,12 @@
+//declare event listeners
 var cityNameInput = document.querySelector("#city-input");
 var startDateInput = document.querySelector("#start-date-input");
 var endDateInput = document.querySelector("#end-date-input");
+var currentCityInput = document.querySelector("#current-city");
+var futureCityInput = document.querySelector("#future-city");
+var futureDateInput = document.querySelector("#future-date");
 
+//need to add functionality to return to homepage if search fails or strings empty
 $('#submit-trip').click(function(event) {
   event.preventDefault();
   if (!cityNameInput.value || !startDateInput.value || !endDateInput.value) {
@@ -13,6 +18,39 @@ $('#submit-trip').click(function(event) {
     .replaceAll(" ", "+");
     var startSearch = startDateInput.value;
     var endSearch = endDateInput.value;
+    window.location.href = "./HTML/events.html?city=" + citySearch + "&startDate=" + startSearch + "&endDate=" + endSearch;  
+  };
+});
+
+//search today's events eventlistener
+$('#find-today-events').click(function(event) {
+  event.preventDefault();
+  if (!currentCityInput.value) {
+    alert("Missing search data");
+  } else {
+    console.log("current worked");
+    // var citySearch = currentCityInput.value
+    // .trim()
+    // .toLowerCase()
+    // .replaceAll(" ", "+");
+    // var startSearch = startDateInput.value;
+    // var endSearch = endDateInput.value;
+    // window.location.href = "./HTML/events.html?city=" + citySearch + "&startDate=" + startSearch + "&endDate=" + endSearch;  
+  };
+});
+
+//search for events on a single day eventlistener
+$('#find-future-events').click(function(event) {
+  event.preventDefault();
+  if (!futureCityInput.value || !futureDateInput.value) {
+    alert("Missing search data");
+  } else {
+    var citySearch = futureCityInput.value
+    .trim()
+    .toLowerCase()
+    .replaceAll(" ", "+");
+    var startSearch = futureDateInput.value;
+    var endSearch = futureDateInput.value;
     window.location.href = "./HTML/events.html?city=" + citySearch + "&startDate=" + startSearch + "&endDate=" + endSearch;  
   };
 });
