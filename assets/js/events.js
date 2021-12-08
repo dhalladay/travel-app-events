@@ -76,7 +76,7 @@ var createEventArray = function(eventsArray, start, end) {
     ticketObj.push(tempArr);
   }
   displayEvents(ticketObj);
-  // getHoliday(eventCountryCode, start, end);
+  getHoliday(eventCountryCode, start, end);
 };
   
   var displayEvents = function(ticketObj) {
@@ -87,21 +87,30 @@ var createEventArray = function(eventsArray, start, end) {
       var eventUrl = ticketObj[i].eventUrl;
       
       var eventEl = document.createElement("div");
+      eventEl.className = "row bg-dark m-1 p-1 justify-content-between";
       
       var nameEl = document.createElement("h2");
+      nameEl.className = "col-sm-12 col-lg-4 text-center";
       nameEl.textContent = eventName;
       
-      var dateEl = document.createElement("h3");
-      dateEl.textContent = eventDate;
+      var dateEl = document.createElement("p");
+      nameEl.className = "col-sm-12 col-lg-4 text-center";
+      dateEl.textContent = "Date: " + eventDate;
       
-      var urlEl = document.createElement("h3");
-      urlEl.textContent = eventUrl;
+      var urlEl = document.createElement("a");
+      nameEl.className = "col-sm-12 col-lg-4 text-center";
+      urlEl.href = eventUrl
+      urlEl.textContent = "Go to Event";
       
       eventEl.append(nameEl, dateEl, urlEl);
 
     eventContainerEl.appendChild(eventEl);
   }
 };
+
+$('#submit-trip').click(function(event) {
+  
+});
 
  // get holiday API
  var getHoliday = function (eventCountryCode, start, end) {
@@ -115,25 +124,25 @@ var createEventArray = function(eventsArray, start, end) {
   }
   
   console.log(datesArray);
-  for (var i = 0; datesArray.length; i++) {
-    // setTimeout(function () {
-      var holidayUrl =
-        "https://holidays.abstractapi.com/v1/?api_key=914c5cd8cbee4eac81585b5ed13d510d&country=" +
-        eventCountryCode +
-        "&year=" +
-        datesArray[i].split("-")[0] +
-        "&month=" +
-        datesArray[i].split("-")[1] +
-        "&day=" +
-        datesArray[i].split("-")[2];
+//   for (var i = 0; datesArray.length; i++) {
+//     // setTimeout(function () {
+//       var holidayUrl =
+//         "https://holidays.abstractapi.com/v1/?api_key=914c5cd8cbee4eac81585b5ed13d510d&country=" +
+//         eventCountryCode +
+//         "&year=" +
+//         datesArray[i].split("-")[0] +
+//         "&month=" +
+//         datesArray[i].split("-")[1] +
+//         "&day=" +
+//         datesArray[i].split("-")[2];
 
-      fetch(holidayUrl).then(function (response) {
-        response.json().then(function (data) {
-          console.log(data);
-        });
-      });
-    // }, 1000);
-  }
+//       fetch(holidayUrl).then(function (response) {
+//         response.json().then(function (data) {
+//           console.log(data);
+//         });
+//       });
+//     // }, 1000);
+//   }
 };
 // getHoliday();
 

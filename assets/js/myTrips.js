@@ -1,28 +1,5 @@
 var eventContainerEl = document.querySelector("#events-container");
 
-var ticketObj = [{
-  eventDate:"2022-07-03",
-  eventName:"Ty Segall",
-  eventUrl:"https://www.ticketmaster.com/event/Z7r9jZ1AdG0q7",
-  },
-  {
-    eventName: "Ty Segall",
-    eventDate: "2022-07-04",
-    eventUrl: "https://www.ticketmaster.com/event/Z7r9jZ1AdFU1b",
-},
-{
-  eventDate:"2022-07-03",
-  eventName:"Ty Segall",
-  eventUrl:"https://www.ticketmaster.com/event/Z7r9jZ1AdG0q7",
-  },
-  {
-    eventName: "Ty Segall",
-    eventDate: "2022-07-04",
-    eventUrl: "https://www.ticketmaster.com/event/Z7r9jZ1AdFU1b",
-}];
-
-
-
 var displayEvents = function() {
   for(var i = 0; i < ticketObj.length; i++) {
 
