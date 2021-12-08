@@ -1,4 +1,5 @@
 var eventContainerEl = document.querySelector("#events-container");
+var holidayContainerEl = document.querySelector("#holiday-container");
 var queryString = document.location.search;
 
 //modal return button listener
@@ -151,5 +152,29 @@ var createEventArray = function(eventsArray, start, end) {
 //     alert("Unable to connect to Abstract holiday API");
 //   });
 //var array will have city name, start and end dates
+
+// var displayHoliday = function() {
+//   for(var i = 0; i < ticketObj.length; i++) {
+    
+//     var eventName = ticketObj[i].eventName;
+//     var eventDate = ticketObj[i].eventDate;
+//     var eventUrl = ticketObj[i].eventUrl;
+    
+//     var eventEl = document.createElement("div");
+    
+//     var nameEl = document.createElement("h2");
+//     nameEl.textContent = eventName;
+    
+//     var dateEl = document.createElement("h3");
+//     dateEl.textContent = eventDate;
+    
+//     var urlEl = document.createElement("h3");
+//     urlEl.textContent = eventUrl;
+    
+//     eventEl.append(nameEl, dateEl, urlEl);
+
+//   eventContainerEl.appendChild(eventEl);
+// }
+// };
 
 searchStrings(queryString);
