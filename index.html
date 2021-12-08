@@ -102,6 +102,41 @@
       </form>  
     </section>
   </main>
+
+   <!-- modals -->
+  <!-- missing search parameters modal -->
+  <div id="missing-param-modal" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="missing-error" aria-describedby="missing-help" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h3 id="missing-error">Missing search data</h3>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+          <p id ="missing-help">Please be sure to include all search fields before pressing submit.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+    
+  <!-- missing search parameters modal -->
+  <div id="date-order-modal" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="date-order-error" aria-describedby="date-order-help" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h3 id="date-order-error">Whoa there Time Traveller!</h3>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+          <p id ="date-order-help">Your start date is after the end date of your trip. We can only search chronologically for the time being.</p>
+        </div>
+      </div>
+    </div>
+  </div>
     
   <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.3.1/js/bootstrap.min.js"></script>

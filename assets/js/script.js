@@ -10,7 +10,9 @@ var futureDateInput = document.querySelector("#future-date");
 $('#submit-trip').click(function(event) {
   event.preventDefault();
   if (!cityNameInput.value || !startDateInput.value || !endDateInput.value) {
-    alert("Missing search data");
+    $("#missing-param-modal").modal("show");
+  } else if (startDateInput.value > endDateInput.value) {
+    $("#date-order-modal").modal("show");
   } else {
     var citySearch = cityNameInput.value
     .trim()
@@ -27,7 +29,7 @@ $('#submit-trip').click(function(event) {
 $('#find-today-events').click(function(event) {
   event.preventDefault();
   if (!currentCityInput.value) {
-    alert("Missing search data");
+    $("#missing-param-modal").modal("show");
   } else {
     //city search formatting
     var citySearch = currentCityInput.value
@@ -48,7 +50,7 @@ $('#find-today-events').click(function(event) {
 $('#find-future-events').click(function(event) {
   event.preventDefault();
   if (!futureCityInput.value || !futureDateInput.value) {
-    alert("Missing search data");
+    $("#missing-param-modal").modal("show");
   } else {
     //get city and format
     var citySearch = futureCityInput.value
