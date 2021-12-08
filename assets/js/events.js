@@ -76,7 +76,7 @@ var createEventArray = function(eventsArray, start, end) {
     ticketObj.push(tempArr);
   }
   displayEvents(ticketObj);
-  // getHoliday(eventCountryCode, start, end);
+  getHoliday(eventCountryCode, start, end);
 };
   
   var displayEvents = function(ticketObj) {
@@ -87,6 +87,8 @@ var createEventArray = function(eventsArray, start, end) {
       var eventUrl = ticketObj[i].eventUrl;
       
       var eventEl = document.createElement("div");
+      eventEl.className = "bg-dark m-1 p-1";
+      eventEl.setAttribute = ("data-event-id", Number(i));
       
       var nameEl = document.createElement("h2");
       nameEl.textContent = eventName;
@@ -103,6 +105,10 @@ var createEventArray = function(eventsArray, start, end) {
   }
 };
 
+$('#submit-trip').click(function(event) {
+  
+});
+
  // get holiday API
  var getHoliday = function (eventCountryCode, start, end) {
   // Returns an array of dates between the two dates
@@ -115,25 +121,25 @@ var createEventArray = function(eventsArray, start, end) {
   }
   
   console.log(datesArray);
-  for (var i = 0; datesArray.length; i++) {
-    // setTimeout(function () {
-      var holidayUrl =
-        "https://holidays.abstractapi.com/v1/?api_key=914c5cd8cbee4eac81585b5ed13d510d&country=" +
-        eventCountryCode +
-        "&year=" +
-        datesArray[i].split("-")[0] +
-        "&month=" +
-        datesArray[i].split("-")[1] +
-        "&day=" +
-        datesArray[i].split("-")[2];
+//   for (var i = 0; datesArray.length; i++) {
+//     // setTimeout(function () {
+//       var holidayUrl =
+//         "https://holidays.abstractapi.com/v1/?api_key=914c5cd8cbee4eac81585b5ed13d510d&country=" +
+//         eventCountryCode +
+//         "&year=" +
+//         datesArray[i].split("-")[0] +
+//         "&month=" +
+//         datesArray[i].split("-")[1] +
+//         "&day=" +
+//         datesArray[i].split("-")[2];
 
-      fetch(holidayUrl).then(function (response) {
-        response.json().then(function (data) {
-          console.log(data);
-        });
-      });
-    // }, 1000);
-  }
+//       fetch(holidayUrl).then(function (response) {
+//         response.json().then(function (data) {
+//           console.log(data);
+//         });
+//       });
+//     // }, 1000);
+//   }
 };
 // getHoliday();
 
