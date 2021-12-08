@@ -1,6 +1,8 @@
 var eventContainerEl = document.querySelector("#events-container");
 var holidayContainerEl = document.querySelector("#holiday-container");
 var queryString = document.location.search;
+var eventClass = "row bg-dark rounded m-1 p-1 justify-content-between";
+var saveClass = "row bg-secondary rounded m-1 p-1 justify-content-between"
 
 //modal return button listener
 $('#return-button').click(function(event) {
@@ -86,11 +88,11 @@ var createEventArray = function(eventsArray, start, end) {
       var eventDate = ticketObj[i].eventDate;
       var eventUrl = ticketObj[i].eventUrl;
 
-      var eventContainer = document.createElement("div");
+      var eventContainer = document.createElement("section");
       eventContainer.className = "container";
       
       var eventRow = document.createElement("div");
-      eventRow.className = "row bg-dark rounded m-1 p-1 justify-content-between";
+      eventRow.className = eventClass;
             
       var nameEl = document.createElement("p");
       nameEl.className = "text-center";
@@ -108,12 +110,14 @@ var createEventArray = function(eventsArray, start, end) {
       eventRow.append(nameEl, dateEl, urlEl);
       eventContainer.append(eventRow);
 
-    eventContainerEl.appendChild(eventContainer);
-  }
+      
+      eventContainerEl.appendChild(eventContainer);
+    }
 };
 
-$('#submit-trip').click(function(event) {
-  
+$("#events-container").on('click', function(event) {
+  var event=event.target;
+  $(event).closest("div").toggleClass("bg-dark bg-secondary")
 });
 
  // get holiday API
