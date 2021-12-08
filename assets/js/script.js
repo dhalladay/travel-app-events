@@ -1,4 +1,30 @@
 
+//declare event listeners
+var cityNameInput = document.querySelector("#city-input");
+var startDateInput = document.querySelector("#start-date-input");
+var endDateInput = document.querySelector("#end-date-input");
+var currentCityInput = document.querySelector("#current-city");
+var futureCityInput = document.querySelector("#future-city");
+var futureDateInput = document.querySelector("#future-date");
+
+//need to add functionality to return to homepage if search fails or strings empty
+$('#submit-trip').click(function(event) {
+  event.preventDefault();
+  if (!cityNameInput.value || !startDateInput.value || !endDateInput.value) {
+    $("#missing-param-modal").modal("show");
+  } else if (startDateInput.value > endDateInput.value) {
+    $("#date-order-modal").modal("show");
+  } else {
+    var citySearch = cityNameInput.value
+    .trim()
+    .toLowerCase()
+    .replaceAll(" ", "+");
+    var startSearch = startDateInput.value;
+    //add a day to end date as ticketmaster api uses events BEFORE end date query parameter
+    var endSearch = moment(endDateInput.value).add(2, 'days').format("YYYY-MM-DD");
+    window.location.href = "./HTML/events.html?city=" + citySearch + "&startDate=" + startSearch + "&endDate=" + endSearch;  
+
+
 var ticketObj = [{
   eventDate:"2022-07-03",
   eventName:"Ty Segall",
@@ -118,32 +144,51 @@ var getEventsRepos = function(array) {
       console.log("unable to connect");
       $("#connect-modal").modal("show");
   });
+
   };
+});
 
-  getEventsRepos(array);
+//search today's events eventlistener
+$('#find-today-events').click(function(event) {
+  event.preventDefault();
+  if (!currentCityInput.value) {
+    $("#missing-param-modal").modal("show");
+  } else {
+    //city search formatting
+    var citySearch = currentCityInput.value
+    .trim()
+    .toLowerCase()
+    .replaceAll(" ", "+");
+    //get todays date and format
+    var startSearch = moment(new Date()).format("YYYY-MM-DD");
+    //get next days date and format
+    var endSearch = moment(startSearch).add(2, 'days').format("YYYY-MM-DD");
+    //send to events page
+    // console.log(citySearch, startSearch, endSearch);
+    window.location.href = "./HTML/events.html?city=" + citySearch + "&startDate=" + startSearch + "&endDate=" + endSearch;  
+  };
+});
 
-//create function to take api response data, modify it and send to display function
- var createEventArray = function(eventsArray) {
-   //create object to hold events
-   var ticketObj = [];
-   //create tempArr variable so events can be pushed to ticket array object
-   tempArr = {};
-   for (var i=0; i < eventsArray.length; i++) {
-     var eventName=eventsArray[i].name;
-     var eventDate=eventsArray[i].dates.start.localDate;
-     var eventUrl=eventsArray[i].url;
-     var eventCity=eventsArray[i]._embedded.venues[0].city.name;
-     //create variable for country code that can be sent to holiday API
-     var eventCountryCode=eventsArray[i]._embedded.venues[0].country.countryCode;
-     tempArr = {eventName,eventDate,eventUrl};
-     ticketObj.push(tempArr);
-   }
-   console.log(ticketObj);
- };
-
-
-
-
+//search for future events on a single day eventlistener
+$('#find-future-events').click(function(event) {
+  event.preventDefault();
+  if (!futureCityInput.value || !futureDateInput.value) {
+    $("#missing-param-modal").modal("show");
+  } else {
+    //get city and format
+    var citySearch = futureCityInput.value
+    .trim()
+    .toLowerCase()
+    .replaceAll(" ", "+");
+    //get future date
+    var startSearch = futureDateInput.value;
+    //get next days date for search
+    var endSearch = moment(futureDateInput.value).add(2, 'days').format('YYYY-MM-DD');
+    // console.log(citySearch, startSearch, endSearch);
+    window.location.href = "./HTML/events.html?city=" + citySearch + "&startDate=" + startSearch + "&endDate=" + endSearch;  
+  };
+});
+ 
 //plan a trip 
 //opens a modal
 //user enters city, start and end date
@@ -176,4 +221,6 @@ var getEventsRepos = function(array) {
 //my trips page
 //shows them all the events they selected or created in a card
 //display any other events they created
+//plus icon will take them to plan a trip modal and functionality
+// splay any other events they created
 //plus icon will take them to plan a trip modal and functionality

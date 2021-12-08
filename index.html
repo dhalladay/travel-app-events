@@ -35,12 +35,19 @@
       <form id="plan-form">
         <div class="form-group">
           <!-- be able to select location -->
-          <input type="text" name="trip-location" placeholder="Enter the trips Location" />
+          <label for="city-input">City Name: </label>
+          <input id="city-input" type="text" name="trip-location" placeholder="eg. new york city" />
         </div>
         <div class="form-group">
           <!-- calander date picker goes here -->
-          <input type="" name="trip-start-date" placeholder="Enter Trip Start Date" />
-          <input type="" name="trip-end-date" placeholder="Enter Trip End Date" />
+          <div id="start-date-div">
+            <label for="start-date-input">Trip start Date: </label>
+            <input id="start-date-input" type="text" name="trip-start-date" placeholder="yyyy-mm-dd" />
+          </div>
+          <div id="end-date-div">
+            <label for="end-date-input">Trip end Date: </label>
+            <input id="end-date-input" type="text" name="trip-end-date" placeholder="yyyy-mm-dd" />
+          </div>
         </div>
         <div class="form-group">
           <button class="btn btn-light btn-sm" id="submit-trip" type="submit">Submit Trip</button>
@@ -66,12 +73,11 @@
       <form id="todays-form">
         <div class="form-group">
           <!-- be able to select location -->
-          <input type="text" name="trip-location" placeholder="Enter Your Location" />
-          <!-- use current location -->
-          <button class="btn btn-light btn-sm" id="current-location" type="">Use Current Location</button>
+          <label for="current-city">Search for events in: </label>
+          <input id="current-city" type="text" name="current-location" placeholder="Enter Your Location" />
         </div>
         <div class="form-group">
-          <button class="btn btn-light btn-sm" id="find-events" type="submit">Find Events</button>
+          <button class="btn btn-light btn-sm" id="find-today-events" type="submit">Find Events</button>
           <!-- add know before you go link pop up after click event-->
         </div>
       </form>
@@ -81,56 +87,57 @@
       <form id="laterDate-form">
         <div class="form-group">
           <!-- be able to select location -->
-          <input type="text" name="trip-location" placeholder="Enter Your Location" />
-          <!-- use current location -->
-          <button class="btn btn-light btn-sm" id="current-location" type="">Use Current Location</button>
+          <label for="future-city">Search for events in: </label>
+          <input id="future-city" type="text" name="future-destination" placeholder="Enter Your Location" />
         </div>
         <div class="form-group">
           <!-- calander date picker goes here -->
-          <input type="" name="trip-date" placeholder="Enter Trip Date" />
+          <label for="future-date">Search for events on: </label>
+          <input id="future-date" type="" name="trip-date" placeholder="Enter Trip Date" />
         </div>
         <div class="form-group">
-          <button class="btn btn-light btn-sm" id="find-events" type="submit">Find Events</button>
+          <button class="btn btn-light btn-sm" id="find-future-events" type="submit">Find Events</button>
           <!-- add know before you go link pop up after click event-->
         </div>
       </form>  
     </section>
   </main>
+
+   <!-- modals -->
+  <!-- missing search parameters modal -->
+  <div id="missing-param-modal" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="missing-error" aria-describedby="missing-help" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h3 id="missing-error">Missing search data</h3>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+          <p id ="missing-help">Please be sure to include all search fields before pressing submit.</p>
+        </div>
+      </div>
+    </div>
+  </div>
     
-    <!-- modals -->
-    <!-- search error modal -->
-    <div id="search-modal" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="search-error" aria-describedby="search-help" aria-hidden="true">
-      <div class="modal-dialog modal-dialog-centered" role="document">
-        <div class="modal-content">
-          <div class="modal-header">
-            <h3 id="search-error">No results</h3>
-            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-              <span aria-hidden="true">&times;</span>
-            </button>
-          </div>
-          <div class="modal-body">
-            <p id ="search-help">Make sure you are using the full city name, including the word 'city', in such cases as New York City or Salt Lake City.</p>
-          </div>
+  <!-- missing search parameters modal -->
+  <div id="date-order-modal" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="date-order-error" aria-describedby="date-order-help" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h3 id="date-order-error">Whoa there Time Traveller!</h3>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+          <p id ="date-order-help">Your start date is after the end date of your trip. We can only search chronologically for the time being.</p>
         </div>
       </div>
     </div>
-    <!-- connection error modal -->
-    <div id="connect-modal" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="connection-error" aria-describedby="connection-help" aria-hidden="true">
-      <div class="modal-dialog modal-dialog-centered" role="document">
-        <div class="modal-content">
-          <div class="modal-header">
-            <h3 id="connection-error">Connection Error</h3>
-            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-              <span aria-hidden="true">&times;</span>
-            </button>
-          </div>
-          <div class="modal-body">
-            <p id ="connection-help">We are unable to connect to TicketMaster. <a href="https://www.ticketmaster.com/" target="_blank" title="Go to ticketmaster.com">Head over there to see what's going on.</a></p>
-          </div>
-        </div>
-      </div>
-    </div>
-  <!-- script references -->
+  </div>
+    
   <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.3.1/js/bootstrap.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.24.0/moment.min.js"></script>
