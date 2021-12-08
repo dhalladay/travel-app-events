@@ -1,4 +1,8 @@
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+
+>>>>>>> d33b2a596c977b3b123900f9f19260dfcaa94e67
 //declare event listeners
 var cityNameInput = document.querySelector("#city-input");
 var startDateInput = document.querySelector("#start-date-input");
@@ -23,7 +27,11 @@ $('#submit-trip').click(function(event) {
     //add a day to end date as ticketmaster api uses events BEFORE end date query parameter
     var endSearch = moment(endDateInput.value).add(2, 'days').format("YYYY-MM-DD");
     window.location.href = "./HTML/events.html?city=" + citySearch + "&startDate=" + startSearch + "&endDate=" + endSearch;  
+<<<<<<< HEAD
 =======
+=======
+
+>>>>>>> d33b2a596c977b3b123900f9f19260dfcaa94e67
 
 var ticketObj = [{
   eventDate:"2022-07-03",
@@ -144,7 +152,11 @@ var getEventsRepos = function(array) {
       console.log("unable to connect");
       $("#connect-modal").modal("show");
   });
+<<<<<<< HEAD
 >>>>>>> 0ddd463e2efc8d8f86c808f9f8984fd52cb3aaa9
+=======
+
+>>>>>>> d33b2a596c977b3b123900f9f19260dfcaa94e67
   };
 });
 
