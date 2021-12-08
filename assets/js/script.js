@@ -17,7 +17,7 @@ $('#submit-trip').click(function(event) {
     .toLowerCase()
     .replaceAll(" ", "+");
     var startSearch = startDateInput.value;
-    var endSearch = endDateInput.value;
+    var endSearch = moment(endDateInput.value).add(1, 'days').format("YYYY-MM-DD");
     window.location.href = "./HTML/events.html?city=" + citySearch + "&startDate=" + startSearch + "&endDate=" + endSearch;  
   };
 });
@@ -28,14 +28,18 @@ $('#find-today-events').click(function(event) {
   if (!currentCityInput.value) {
     alert("Missing search data");
   } else {
-    console.log("current worked");
-    // var citySearch = currentCityInput.value
-    // .trim()
-    // .toLowerCase()
-    // .replaceAll(" ", "+");
-    // var startSearch = startDateInput.value;
-    // var endSearch = endDateInput.value;
-    // window.location.href = "./HTML/events.html?city=" + citySearch + "&startDate=" + startSearch + "&endDate=" + endSearch;  
+    //city search formatting
+    var citySearch = currentCityInput.value
+    .trim()
+    .toLowerCase()
+    .replaceAll(" ", "+");
+    //get todays date and format
+    var startSearch = moment(new Date()).format("YYYY-MM-DD");
+    //get next days date and format
+    var endSearch = moment(startSearch).add(1, 'days').format("YYYY-MM-DD");
+    //send to events page
+    // console.log(citySearch, startSearch, endSearch);
+    window.location.href = "./HTML/events.html?city=" + citySearch + "&startDate=" + startSearch + "&endDate=" + endSearch;  
   };
 });
 
@@ -45,12 +49,16 @@ $('#find-future-events').click(function(event) {
   if (!futureCityInput.value || !futureDateInput.value) {
     alert("Missing search data");
   } else {
+    //get city and format
     var citySearch = futureCityInput.value
     .trim()
     .toLowerCase()
     .replaceAll(" ", "+");
+    //get future date
     var startSearch = futureDateInput.value;
-    var endSearch = futureDateInput.value;
+    //get next days date for search
+    var endSearch = moment(futureDateInput.value).add(1, 'days').format('YYYY-MM-DD');
+    // console.log(citySearch, startSearch, endSearch);
     window.location.href = "./HTML/events.html?city=" + citySearch + "&startDate=" + startSearch + "&endDate=" + endSearch;  
   };
 });
