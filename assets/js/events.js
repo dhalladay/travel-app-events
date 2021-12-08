@@ -85,26 +85,30 @@ var createEventArray = function(eventsArray, start, end) {
       var eventName = ticketObj[i].eventName;
       var eventDate = ticketObj[i].eventDate;
       var eventUrl = ticketObj[i].eventUrl;
+
+      var eventContainer = document.createElement("div");
+      eventContainer.className = "container";
       
-      var eventEl = document.createElement("div");
-      eventEl.className = "row bg-dark m-1 p-1 justify-content-between";
-      
-      var nameEl = document.createElement("h2");
-      nameEl.className = "col-sm-12 col-lg-4 text-center";
+      var eventRow = document.createElement("div");
+      eventRow.className = "row bg-dark rounded m-1 p-1 justify-content-between";
+            
+      var nameEl = document.createElement("p");
+      nameEl.className = "text-center";
       nameEl.textContent = eventName;
       
       var dateEl = document.createElement("p");
-      nameEl.className = "col-sm-12 col-lg-4 text-center";
-      dateEl.textContent = "Date: " + eventDate;
+      nameEl.className = "text-center";
+      dateEl.textContent = eventDate;
       
       var urlEl = document.createElement("a");
-      nameEl.className = "col-sm-12 col-lg-4 text-center";
+      nameEl.className = "text-center";
       urlEl.href = eventUrl
       urlEl.textContent = "Go to Event";
       
-      eventEl.append(nameEl, dateEl, urlEl);
+      eventRow.append(nameEl, dateEl, urlEl);
+      eventContainer.append(eventRow);
 
-    eventContainerEl.appendChild(eventEl);
+    eventContainerEl.appendChild(eventContainer);
   }
 };
 
