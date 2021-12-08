@@ -17,6 +17,7 @@ $('#submit-trip').click(function(event) {
     .toLowerCase()
     .replaceAll(" ", "+");
     var startSearch = startDateInput.value;
+    //add a day to end date as ticketmaster api uses events BEFORE end date query parameter
     var endSearch = moment(endDateInput.value).add(1, 'days').format("YYYY-MM-DD");
     window.location.href = "./HTML/events.html?city=" + citySearch + "&startDate=" + startSearch + "&endDate=" + endSearch;  
   };

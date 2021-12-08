@@ -1,6 +1,12 @@
 var eventContainerEl = document.querySelector("#events-container");
 var queryString = document.location.search;
 
+//modal return button listener
+$('#return-button').click(function(event) {
+  event.preventDefault();
+  window.location.href = "../index.html";
+});
+
 
 var searchStrings = function(queryString) {
   //split string into key pairs
@@ -18,7 +24,7 @@ var searchStrings = function(queryString) {
   var splitEnd = endString.split("=");
   var endSearch = splitEnd[1];
   // getEventsRepos(citySearch, startSearch, endSearch);
-  console.log(citySearch, startSearch, endSearch);
+  getEventsRepos(citySearch, startSearch, endSearch);
 }
 
 //create function to receive user input and search ticketmaster
@@ -27,7 +33,7 @@ var getEventsRepos = function(citySearch, startSearch, endSearch) {
   var start = startSearch;
   var end = endSearch;
   //ticketmaster API search with dynamic content
-  var apiURL = "https://app.ticketmaster.com/discovery/v2/events.json?apikey=nmIDSJ3YAMVW3F9ZJYGySEgG4V1kQlCZ&city=" + city + "&startDateTime=" + start + "T03:00:00Z&endDateTime=" + end + "T23:59:00Z&sort=date,asc";
+  var apiURL = "https://app.ticketmaster.com/discovery/v2/events.json?apikey=nmIDSJ3YAMVW3F9ZJYGySEgG4V1kQlCZ&city=" + city + "&startDateTime=" + start + "T03:00:00Z&endDateTime=" + end + "T00:00:00Z&sort=date,asc";
   
   //fetch request to ticketmaster
   fetch(apiURL)
