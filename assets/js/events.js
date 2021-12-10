@@ -25,8 +25,7 @@ var searchStrings = function(queryString) {
   //extract endDate from end parameter
   var endString = splitQuery[2]
   var splitEnd = endString.split("=");
-  var endSearch = splitEnd[1];
-  // getEventsRepos(citySearch, startSearch, endSearch);
+  var endSearch = moment(splitEnd[1]).add(2, 'days').format("YYYY-MM-DD");
   getEventsRepos(citySearch, startSearch, endSearch);
 }
 
@@ -48,7 +47,7 @@ var getEventsRepos = function(citySearch, startSearch, endSearch) {
         } else {
           var eventsArray = data._embedded.events;
           //send fetch data to function that will gather data needed for display  consol
-          console.log(eventsArray);
+          // console.log(eventsArray);
           createEventArray(eventsArray, start, end);
         }
       });
@@ -88,22 +87,22 @@ var createEventArray = function(eventsArray, start, end) {
       var eventDate = ticketObj[i].eventDate;
       var eventUrl = ticketObj[i].eventUrl;
 
-      var eventContainer = document.createElement("section");
+      var eventContainer = document.createElement("ul");
       eventContainer.className = "container";
       
-      var eventRow = document.createElement("div");
+      var eventRow = document.createElement("li");
       eventRow.className = eventClass;
             
-      var nameEl = document.createElement("p");
-      nameEl.className = "text-center";
+      var nameEl = document.createElement("h3");
+      nameEl.className = "text-center name";
       nameEl.textContent = eventName;
       
       var dateEl = document.createElement("p");
-      nameEl.className = "text-center";
+      nameEl.className = "text-center date";
       dateEl.textContent = eventDate;
       
       var urlEl = document.createElement("a");
-      nameEl.className = "text-center";
+      nameEl.className = "text-center link";
       urlEl.href = eventUrl
       urlEl.textContent = "Go to Event";
       
@@ -117,30 +116,41 @@ var createEventArray = function(eventsArray, start, end) {
 
 $("#events-container").on('click', function(event) {
   var event=event.target;
-  $(event).closest("div").toggleClass("bg-dark bg-secondary");
+  $(event).closest("li").toggleClass("bg-dark bg-secondary");
 });
 
 $('#save-btn').on('click', function() {
-  var myTrip = [];
-  var paragraphContent = $('.bg-secondary').children("p")
-  var urlContent = $('.bg-secondary').children("a")
+  var eventsArray = ["City", "dates"];
+  var titleContent = $('.bg-secondary').children("h3");
+  var paragraphContent = $('.bg-secondary').children("p");
+  var urlContent = $('.bg-secondary').children("a");
   for (var i=0; i < paragraphContent.length; i++) {
-    var savedEvent = [];
-    if (i % 2 != 0) {
-      var a = paragraphContent[i].textContent;
-      var b = urlContent[0].href;
-      savedEvent.push(a);
-      savedEvent.push(b)
-
-    } else {
-      var c = paragraphContent[i].textContent;
-      savedEvent.push(c);
-    }
-    myTrip.push(savedEvent)
+    var a = titleContent[i].textContent;
+    var b = paragraphContent[i].textContent;
+    var c = urlContent[i].href;
+    var tempArray = [a, b, c]
+    eventsArray.push(tempArray);
   }
-  console.log(myTrip);
+  console.log(eventsArray);
 });
 
+// $('#save-btn').on('click', function() {
+//   var myTrip = [];
+//   var paragraphContent = $('.bg-secondary').children("h3");
+//   var urlContent = $('.bg-secondary').children("a");
+//   console.log(paragraphContent.textContent);
+//   for (var i=0; i < paragraphContent.length; i++) {
+//     var savedEvent = [];
+//     if (i % 2 != 0) {
+//       var a = paragraphContent[i].textContent;
+//       var b = urlContent[0].href;
+//     } else {
+//       var c = paragraphContent[i].textContent;
+//     }
+//     myTrip.push(savedEvent)
+//   }
+//   console.log(myTrip);
+// });
 
  // get holiday API
  var getHoliday = function (eventCountryCode, start, end) {
@@ -153,7 +163,7 @@ $('#save-btn').on('click', function() {
     datesArray.push(m.format("YYYY-MM-DD"));
   }
   
-  console.log(datesArray);
+  // console.log(datesArray);
 //   for (var i = 0; datesArray.length; i++) {
 //     // setTimeout(function () {
 //       var holidayUrl =
