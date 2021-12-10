@@ -117,8 +117,30 @@ var createEventArray = function(eventsArray, start, end) {
 
 $("#events-container").on('click', function(event) {
   var event=event.target;
-  $(event).closest("div").toggleClass("bg-dark bg-secondary")
+  $(event).closest("div").toggleClass("bg-dark bg-secondary");
 });
+
+$('#save-btn').on('click', function() {
+  var myTrip = [];
+  var paragraphContent = $('.bg-secondary').children("p")
+  var urlContent = $('.bg-secondary').children("a")
+  for (var i=0; i < paragraphContent.length; i++) {
+    var savedEvent = [];
+    if (i % 2 != 0) {
+      var a = paragraphContent[i].textContent;
+      var b = urlContent[0].href;
+      savedEvent.push(a);
+      savedEvent.push(b)
+
+    } else {
+      var c = paragraphContent[i].textContent;
+      savedEvent.push(c);
+    }
+    myTrip.push(savedEvent)
+  }
+  console.log(myTrip);
+});
+
 
  // get holiday API
  var getHoliday = function (eventCountryCode, start, end) {
