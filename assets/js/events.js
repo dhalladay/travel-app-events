@@ -2,7 +2,7 @@ var eventContainerEl = document.querySelector("#events-container");
 var holidayContainerEl = document.querySelector("#holiday-container");
 var queryString = document.location.search;
 var eventClass = "row bg-dark rounded m-1 p-1 justify-content-between";
-var saveClass = "row bg-secondary rounded m-1 p-1 justify-content-between"
+var saveClass = "row bg-secondary rounded m-1 p-1 justify-content-between";
 
 //modal return button listener
 $('#return-button').click(function(event) {
@@ -26,8 +26,11 @@ var searchStrings = function(queryString) {
   var endString = splitQuery[2]
   var splitEnd = endString.split("=");
   var endSearch = moment(splitEnd[1]).add(2, 'days').format("YYYY-MM-DD");
-  getEventsRepos(citySearch, startSearch, endSearch);
-}
+  // getEventsRepos(citySearch, startSearch, endSearch);
+  console.log(citySearch, startSearch, splitEnd);
+  return(citySearch, startSearch, splitEnd[1]);
+};
+
 
 //create function to receive user input and search ticketmaster
 var getEventsRepos = function(citySearch, startSearch, endSearch) {
@@ -79,14 +82,14 @@ var createEventArray = function(eventsArray, start, end) {
   displayEvents(ticketObj);
   getHoliday(eventCountryCode, start, end);
 };
-  
-  var displayEvents = function(ticketObj) {
-    for(var i = 0; i < ticketObj.length; i++) {
-      
-      var eventName = ticketObj[i].eventName;
-      var eventDate = ticketObj[i].eventDate;
-      var eventUrl = ticketObj[i].eventUrl;
 
+var displayEvents = function(ticketObj) {
+  for(var i = 0; i < ticketObj.length; i++) {
+    
+    var eventName = ticketObj[i].eventName;
+    var eventDate = ticketObj[i].eventDate;
+      var eventUrl = ticketObj[i].eventUrl;
+      
       var eventContainer = document.createElement("ul");
       eventContainer.className = "container";
       
@@ -108,7 +111,7 @@ var createEventArray = function(eventsArray, start, end) {
       
       eventRow.append(nameEl, dateEl, urlEl);
       eventContainer.append(eventRow);
-
+      
       
       eventContainerEl.appendChild(eventContainer);
     }
@@ -120,6 +123,7 @@ $("#events-container").on('click', function(event) {
 });
 
 $('#save-btn').on('click', function() {
+  
   var eventsArray = ["City", "dates"];
   var titleContent = $('.bg-secondary').children("h3");
   var paragraphContent = $('.bg-secondary').children("p");
@@ -134,24 +138,6 @@ $('#save-btn').on('click', function() {
   console.log(eventsArray);
 });
 
-// $('#save-btn').on('click', function() {
-//   var myTrip = [];
-//   var paragraphContent = $('.bg-secondary').children("h3");
-//   var urlContent = $('.bg-secondary').children("a");
-//   console.log(paragraphContent.textContent);
-//   for (var i=0; i < paragraphContent.length; i++) {
-//     var savedEvent = [];
-//     if (i % 2 != 0) {
-//       var a = paragraphContent[i].textContent;
-//       var b = urlContent[0].href;
-//     } else {
-//       var c = paragraphContent[i].textContent;
-//     }
-//     myTrip.push(savedEvent)
-//   }
-//   console.log(myTrip);
-// });
-
  // get holiday API
  var getHoliday = function (eventCountryCode, start, end) {
   // Returns an array of dates between the two dates
@@ -164,12 +150,12 @@ $('#save-btn').on('click', function() {
   }
   
   // console.log(datesArray);
-//   for (var i = 0; datesArray.length; i++) {
+  //   for (var i = 0; datesArray.length; i++) {
 //     // setTimeout(function () {
-//       var holidayUrl =
-//         "https://holidays.abstractapi.com/v1/?api_key=914c5cd8cbee4eac81585b5ed13d510d&country=" +
-//         eventCountryCode +
-//         "&year=" +
+  //       var holidayUrl =
+  //         "https://holidays.abstractapi.com/v1/?api_key=914c5cd8cbee4eac81585b5ed13d510d&country=" +
+  //         eventCountryCode +
+  //         "&year=" +
 //         datesArray[i].split("-")[0] +
 //         "&month=" +
 //         datesArray[i].split("-")[1] +
@@ -177,7 +163,7 @@ $('#save-btn').on('click', function() {
 //         datesArray[i].split("-")[2];
 
 //       fetch(holidayUrl).then(function (response) {
-//         response.json().then(function (data) {
+  //         response.json().then(function (data) {
 //           console.log(data);
 //         });
 //       });
@@ -189,41 +175,41 @@ $('#save-btn').on('click', function() {
 
 // fetch(holidayUrl)
 //   .then(function (response) {
-//     if (response.ok) {
-//       response.json().then(function (data) {
-//         console.log(data);
-//       });
+  //     if (response.ok) {
+    //       response.json().then(function (data) {
+      //         console.log(data);
+      //       });
 //     } else {
 //       console.log("No holiday found");
 //     }
 //   })
 //   .catch(function (error) {
-//     alert("Unable to connect to Abstract holiday API");
-//   });
-//var array will have city name, start and end dates
+  //     alert("Unable to connect to Abstract holiday API");
+  //   });
+  //var array will have city name, start and end dates
+  
+  // var displayHoliday = function() {
+    //   for(var i = 0; i < ticketObj.length; i++) {
+    
+      //     var eventName = ticketObj[i].eventName;
+      //     var eventDate = ticketObj[i].eventDate;
+      //     var eventUrl = ticketObj[i].eventUrl;
+    
+      //     var eventEl = document.createElement("div");
+      
+      //     var nameEl = document.createElement("h2");
+      //     nameEl.textContent = eventName;
+      
+      //     var dateEl = document.createElement("h3");
+      //     dateEl.textContent = eventDate;
+      
+      //     var urlEl = document.createElement("h3");
+      //     urlEl.textContent = eventUrl;
+      
+      //     eventEl.append(nameEl, dateEl, urlEl);
+      
+      //   eventContainerEl.appendChild(eventEl);
+      // }
+      // };
 
-// var displayHoliday = function() {
-//   for(var i = 0; i < ticketObj.length; i++) {
-    
-//     var eventName = ticketObj[i].eventName;
-//     var eventDate = ticketObj[i].eventDate;
-//     var eventUrl = ticketObj[i].eventUrl;
-    
-//     var eventEl = document.createElement("div");
-    
-//     var nameEl = document.createElement("h2");
-//     nameEl.textContent = eventName;
-    
-//     var dateEl = document.createElement("h3");
-//     dateEl.textContent = eventDate;
-    
-//     var urlEl = document.createElement("h3");
-//     urlEl.textContent = eventUrl;
-    
-//     eventEl.append(nameEl, dateEl, urlEl);
-
-//   eventContainerEl.appendChild(eventEl);
-// }
-// };
-
-searchStrings(queryString);
+      searchStrings(queryString);
