@@ -1,8 +1,6 @@
 var eventContainerEl = document.querySelector("#events-container");
 var holidayContainerEl = document.querySelector("#holiday-container");
 var queryString = document.location.search;
-var eventClass = "row bg-dark rounded m-1 p-1 justify-content-between";
-var saveClass = "row bg-secondary rounded m-1 p-1 justify-content-between"
 
 //modal return button listener
 $('#return-button').click(function(event) {
@@ -78,7 +76,7 @@ var createEventArray = function(eventsArray, start, end) {
     ticketObj.push(tempArr);
   }
   displayEvents(ticketObj);
-  getHoliday(eventCountryCode, start, end);
+  // getHoliday(eventCountryCode, start, end);
 };
   
   var displayEvents = function(ticketObj) {
@@ -87,38 +85,23 @@ var createEventArray = function(eventsArray, start, end) {
       var eventName = ticketObj[i].eventName;
       var eventDate = ticketObj[i].eventDate;
       var eventUrl = ticketObj[i].eventUrl;
-
-      var eventContainer = document.createElement("section");
-      eventContainer.className = "container";
       
-      var eventRow = document.createElement("div");
-      eventRow.className = eventClass;
-            
-      var nameEl = document.createElement("p");
-      nameEl.className = "text-center";
+      var eventEl = document.createElement("div");
+      
+      var nameEl = document.createElement("h2");
       nameEl.textContent = eventName;
       
-      var dateEl = document.createElement("p");
-      nameEl.className = "text-center";
+      var dateEl = document.createElement("h3");
       dateEl.textContent = eventDate;
       
-      var urlEl = document.createElement("a");
-      nameEl.className = "text-center";
-      urlEl.href = eventUrl
-      urlEl.textContent = "Go to Event";
+      var urlEl = document.createElement("h3");
+      urlEl.textContent = eventUrl;
       
-      eventRow.append(nameEl, dateEl, urlEl);
-      eventContainer.append(eventRow);
+      eventEl.append(nameEl, dateEl, urlEl);
 
-      
-      eventContainerEl.appendChild(eventContainer);
-    }
+    eventContainerEl.appendChild(eventEl);
+  }
 };
-
-$("#events-container").on('click', function(event) {
-  var event=event.target;
-  $(event).closest("div").toggleClass("bg-dark bg-secondary")
-});
 
  // get holiday API
  var getHoliday = function (eventCountryCode, start, end) {
@@ -132,25 +115,25 @@ $("#events-container").on('click', function(event) {
   }
   
   console.log(datesArray);
-//   for (var i = 0; datesArray.length; i++) {
-//     // setTimeout(function () {
-//       var holidayUrl =
-//         "https://holidays.abstractapi.com/v1/?api_key=914c5cd8cbee4eac81585b5ed13d510d&country=" +
-//         eventCountryCode +
-//         "&year=" +
-//         datesArray[i].split("-")[0] +
-//         "&month=" +
-//         datesArray[i].split("-")[1] +
-//         "&day=" +
-//         datesArray[i].split("-")[2];
+  for (var i = 0; datesArray.length; i++) {
+    // setTimeout(function () {
+      var holidayUrl =
+        "https://holidays.abstractapi.com/v1/?api_key=914c5cd8cbee4eac81585b5ed13d510d&country=" +
+        eventCountryCode +
+        "&year=" +
+        datesArray[i].split("-")[0] +
+        "&month=" +
+        datesArray[i].split("-")[1] +
+        "&day=" +
+        datesArray[i].split("-")[2];
 
-//       fetch(holidayUrl).then(function (response) {
-//         response.json().then(function (data) {
-//           console.log(data);
-//         });
-//       });
-//     // }, 1000);
-//   }
+      fetch(holidayUrl).then(function (response) {
+        response.json().then(function (data) {
+          console.log(data);
+        });
+      });
+    // }, 1000);
+  }
 };
 // getHoliday();
 
