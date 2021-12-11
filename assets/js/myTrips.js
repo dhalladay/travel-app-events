@@ -1,3 +1,2 @@
-var storedEvent = localStorage.getItem("eventsArray");
-storedEvent = JSON.parse(storedEvent);
+var storedEvent = JSON.parse(localStorage.getItem("eventsArray"));
 console.log(storedEvent[0]);
