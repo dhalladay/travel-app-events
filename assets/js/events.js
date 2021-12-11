@@ -77,6 +77,7 @@ var createEventArray = function(eventsArray, start, end) {
     ticketObj.push(tempArr);
   }
   displayEvents(ticketObj);
+  // getHoliday(eventCountryCode, start, end);
 };
 
 //create hmtl tags
