@@ -23,8 +23,7 @@ var searchStrings = function(queryString) {
   //extract endDate from end parameter
   var endString = splitQuery[2]
   var splitEnd = endString.split("=");
-  var endSearch = splitEnd[1];
-  // getEventsRepos(citySearch, startSearch, endSearch);
+  var endSearch = moment(splitEnd[1]).add(2, 'days').format("YYYY-MM-DD");
   getEventsRepos(citySearch, startSearch, endSearch);
 }
 
@@ -46,7 +45,7 @@ var getEventsRepos = function(citySearch, startSearch, endSearch) {
         } else {
           var eventsArray = data._embedded.events;
           //send fetch data to function that will gather data needed for display  consol
-          console.log(eventsArray);
+          // console.log(eventsArray);
           createEventArray(eventsArray, start, end);
         }
       });
@@ -85,23 +84,52 @@ var createEventArray = function(eventsArray, start, end) {
       var eventName = ticketObj[i].eventName;
       var eventDate = ticketObj[i].eventDate;
       var eventUrl = ticketObj[i].eventUrl;
+
+      var eventContainer = document.createElement("ul");
+      eventContainer.className = "container";
       
-      var eventEl = document.createElement("div");
-      
-      var nameEl = document.createElement("h2");
+      var eventRow = document.createElement("li");
+      eventRow.className = eventClass;
+            
+      var nameEl = document.createElement("h3");
+      nameEl.className = "text-center name";
       nameEl.textContent = eventName;
       
-      var dateEl = document.createElement("h3");
+      var dateEl = document.createElement("p");
+      nameEl.className = "text-center date";
       dateEl.textContent = eventDate;
       
-      var urlEl = document.createElement("h3");
-      urlEl.textContent = eventUrl;
+      var urlEl = document.createElement("a");
+      nameEl.className = "text-center link";
+      urlEl.href = eventUrl
+      urlEl.textContent = "Go to Event";
       
       eventEl.append(nameEl, dateEl, urlEl);
 
     eventContainerEl.appendChild(eventEl);
   }
 };
+
+$("#events-container").on('click', function(event) {
+  var event=event.target;
+  $(event).closest("li").toggleClass("bg-dark bg-secondary");
+});
+
+$('#save-btn').on('click', function() {
+  var eventsArray = ["City", "dates"];
+  var titleContent = $('.bg-secondary').children("h3");
+  var paragraphContent = $('.bg-secondary').children("p");
+  var urlContent = $('.bg-secondary').children("a");
+  for (var i=0; i < paragraphContent.length; i++) {
+    var a = titleContent[i].textContent;
+    var b = paragraphContent[i].textContent;
+    var c = urlContent[i].href;
+    var tempArray = [a, b, c]
+    eventsArray.push(tempArray);
+  }
+  console.log(eventsArray);
+});
+
 
  // get holiday API
  var getHoliday = function (eventCountryCode, start, end) {
@@ -114,18 +142,18 @@ var createEventArray = function(eventsArray, start, end) {
     datesArray.push(m.format("YYYY-MM-DD"));
   }
   
-  console.log(datesArray);
-  for (var i = 0; datesArray.length; i++) {
-    // setTimeout(function () {
-      var holidayUrl =
-        "https://holidays.abstractapi.com/v1/?api_key=914c5cd8cbee4eac81585b5ed13d510d&country=" +
-        eventCountryCode +
-        "&year=" +
-        datesArray[i].split("-")[0] +
-        "&month=" +
-        datesArray[i].split("-")[1] +
-        "&day=" +
-        datesArray[i].split("-")[2];
+  // console.log(datesArray);
+//   for (var i = 0; datesArray.length; i++) {
+//     // setTimeout(function () {
+//       var holidayUrl =
+//         "https://holidays.abstractapi.com/v1/?api_key=914c5cd8cbee4eac81585b5ed13d510d&country=" +
+//         eventCountryCode +
+//         "&year=" +
+//         datesArray[i].split("-")[0] +
+//         "&month=" +
+//         datesArray[i].split("-")[1] +
+//         "&day=" +
+//         datesArray[i].split("-")[2];
 
       fetch(holidayUrl).then(function (response) {
         response.json().then(function (data) {
