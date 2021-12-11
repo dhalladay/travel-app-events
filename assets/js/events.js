@@ -1,5 +1,4 @@
 var eventContainerEl = document.querySelector("#events-container");
-var holidayContainerEl = document.querySelector("#holiday-container");
 var queryString = document.location.search;
 var eventClass = "row bg-dark rounded m-1 p-1 justify-content-between";
 var saveClass = "row bg-secondary rounded m-1 p-1 justify-content-between";
@@ -72,12 +71,11 @@ var createEventArray = function(eventsArray, start, end) {
     var eventDate=eventsArray[i].dates.start.localDate;
     var eventUrl=eventsArray[i].url;
     //create variable for country code that can be sent to holiday API
-    var eventCountryCode=eventsArray[i]._embedded.venues[0].country.countryCode;
+    // var eventCountryCode=eventsArray[i]._embedded.venues[0].country.countryCode;
     tempArr = {eventName,eventDate,eventUrl};
     ticketObj.push(tempArr);
   }
   displayEvents(ticketObj);
-  // getHoliday(eventCountryCode, start, end);
 };
 
 //create hmtl tags
@@ -134,7 +132,8 @@ $('#save-btn').on('click', function() {
   var endString = splitQuery[2]
   var splitEnd = endString.split("=");
   var endSearch = splitEnd[1];
-  var eventsTempArray = [citySearch, startSearch, endSearch];
+  var eventsArray = [citySearch, startSearch, endSearch];
+
   var titleContent = $('.bg-secondary').children("h3");
   var paragraphContent = $('.bg-secondary').children("p");
   var urlContent = $('.bg-secondary').children("a");
@@ -145,7 +144,9 @@ $('#save-btn').on('click', function() {
     var tempArray = [a, b, c]
     eventsTempArray.push(tempArray);
   }
-  console.log(eventsTempArray);
+  console.log(eventsArray);
+
+  localStorage.eventsArray = JSON.stringify(eventsArray);
 });
 
       searchStrings(queryString);
