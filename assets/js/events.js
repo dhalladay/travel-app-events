@@ -2,6 +2,46 @@ var eventContainerEl = document.querySelector("#events-container");
 var queryString = document.location.search;
 var eventClass = "row bg-dark rounded m-1 p-1 justify-content-between";
 var saveClass = "row bg-secondary rounded m-1 p-1 justify-content-between";
+var savedEvents = {};
+// var tripNames = {};
+var tripCounter = 0;
+
+//for purposes of comparison - to be deleted
+tasks = JSON.parse(localStorage.getItem("tasks"));
+console.log(tasks);
+
+var loadEvents = function() {
+  savedEvents = JSON.parse(localStorage.getItem("savedEvents"));
+
+  if (!savedEvents) {
+    savedEvents = {
+      current: []
+    };
+    return savedEvents;
+  }
+  console.log(savedEvents);
+};
+
+// var loadTripNames = function() {
+//   tripNames = JSON.parse(localStorage.getItem("tripNames"));
+//   if (!tripNames) {
+//     tripNames = {
+//       current: []
+//     };
+//     return savedEvents;
+//   }
+//   console.log(tripNames);
+// };
+var loadTripCounter = function() {
+  tripNames = JSON.parse(localStorage.getItem("tripCounter"));
+  if (!tripCounter) {
+    tripCounter = 0;
+    return tripCounter;
+  }
+  console.log(tripCounter)
+  return tripCounter;
+};
+
 
 //modal return button listener
 $('#return-button').click(function(event) {
@@ -132,7 +172,6 @@ $('#save-btn').on('click', function() {
   var endString = splitQuery[2]
   var splitEnd = endString.split("=");
   var endSearch = splitEnd[1];
-  var eventsArray = [citySearch, startSearch, endSearch];
 
   var titleContent = $('.bg-secondary').children("h3");
   var paragraphContent = $('.bg-secondary').children("p");
@@ -141,12 +180,22 @@ $('#save-btn').on('click', function() {
     var a = titleContent[i].textContent;
     var b = paragraphContent[i].textContent;
     var c = urlContent[i].href;
-    var tempArray = [a, b, c]
-    eventsTempArray.push(tempArray);
+    var tempObj = {"city": citySearch, "start": startSearch, "end": endSearch, "name": a, "date":b, "link": c, "id": tripCounter};
+    savedEvents.current.push(tempObj);
   }
-  console.log(eventsArray);
+  console.log(savedEvents);
+  // var tempTripName = {"city": citySearch, "start": startSearch, "end": endSearch};
+  // tripNames.current.push(tempTripName);
+  // localStorage.setItem("tripNames", JSON.stringify(tripNames));
+  localStorage.setItem("savedEvents", JSON.stringify(savedEvents));
+  localStorage.setItem("tripCounter", JSON.stringify(tripCounter));
+  tripCounter++;
+  loadTripCounter();
+  // window.location.href = "./myTrips.html";
 
-  localStorage.eventsArray = JSON.stringify(eventsArray);
 });
 
-      searchStrings(queryString);
+loadEvents();
+// loadTripNames();
+loadTripCounter();
+searchStrings(queryString);
