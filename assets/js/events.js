@@ -145,17 +145,12 @@ $('#save-btn').on('click', function() {
     eventsArray.push(tempArray);
 
   }
-  console.log(eventsArray);
-
-  var saveEvents = function() {
+  var saveEvents = function(eventsArray) {
     localStorage.setItem("eventsArray",JSON.stringify(eventsArray));
   }
 
-  // var storedEvent = {};
-// console.log(storedEvent[0]);
-    
-
-  
+  saveEvents(eventsArray);
+  window.location.href = "./mytrips.html"
 });
 
-      searchStrings(queryString);
+searchStrings(queryString);

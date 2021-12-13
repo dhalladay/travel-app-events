@@ -7,39 +7,34 @@ var showEvents = function() {
   var storedEvent = localStorage.getItem("eventsArray");
  
   storedEvent = JSON.parse(storedEvent)
-  console.log(storedEvent[0])
   var city = storedEvent[0]
   .replaceAll("+", " ");
-console.log(city)
+  
+  console.log(city[0]);
 
   var showEventsEl = document.createElement("a");
   showEventsEl.textContent = storedEvent;
 
-  displayEvents(storedEvent)
+  displayEvents(city, storedEvent)
 };
 
-var displayEvents = function(storedEvent) {
-  var searchCity = storedEvent[0]
-  .replaceAll("+", " ");
+var displayEvents = function(city, storedEvent) {
+  var searchCity = city;
   var startDate = storedEvent[1]
   var endDate = storedEvent[2]
 
-  var searchContainer = document.createElement("h2");
+  var searchContainer = document.createElement("div");
       searchContainer.className = "container";
 
       var cityEl = document.createElement("h3");
       cityEl.className = "text-center name";
-      cityEl.textContent = searchCity;
+      cityEl.textContent = "Your trip to " + searchCity;
 
       var startDateEl = document.createElement("p");
       startDateEl.className = "text-center date";
-      startDateEl.textContent = startDate;
+      startDateEl.textContent = "from "  + startDate + " to " + endDate;
 
-      var endDateEl = document.createElement("p");
-      endDateEl.className = "text-center date";
-      endDateEl.textContent = endDate;
-
-      searchContainer.append(cityEl, startDateEl, endDateEl)
+      searchContainer.append(cityEl, startDateEl)
       
       searchContainerEl.appendChild(searchContainer);
 
@@ -73,7 +68,7 @@ var displayEvents = function(storedEvent) {
       eventContainer.append(eventRow);
       
       
-      eventContainerEl.appendChild(eventContainer);
+      searchContainerEl.appendChild(eventContainer);
     }
 };
 
