@@ -19,7 +19,7 @@ var searchStrings = function (queryString) {
   //extract startDate from start parameter
   var startString = splitQuery[1];
   var splitStart = startString.split("=");
-  var startSearch = splitStart[1];
+  var startSearch = moment(splitStart[1]).format("YYYY-MM-DD");
   //extract endDate from end parameter
   var endString = splitQuery[2];
   var splitEnd = endString.split("=");
@@ -33,6 +33,9 @@ var getEventsRepos = function (citySearch, startSearch, endSearch) {
   var city = citySearch;
   var start = startSearch;
   var end = endSearch;
+
+  console.log(startSearch);
+  console.log(endSearch);
 
   //ticketmaster API search with dynamic content
   var apiURL =
@@ -223,5 +226,4 @@ $('#save-btn').on('click', function() {
   localStorage.eventsArray = JSON.stringify(eventsArray);
 });
 
-      searchStrings(queryString);
-
+searchStrings(queryString);
