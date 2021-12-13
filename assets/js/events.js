@@ -25,6 +25,7 @@ var searchStrings = function (queryString) {
   var endSearch = splitEnd[1];
   // getEventsRepos(citySearch, startSearch, endSearch);
   getEventsRepos(citySearch, startSearch, endSearch);
+
 };
 
 //create function to receive user input and search ticketmaster
@@ -32,6 +33,7 @@ var getEventsRepos = function (citySearch, startSearch, endSearch) {
   var city = citySearch;
   var start = startSearch;
   var end = endSearch;
+
   //ticketmaster API search with dynamic content
   var apiURL =
     "https://app.ticketmaster.com/discovery/v2/events.json?apikey=nmIDSJ3YAMVW3F9ZJYGySEgG4V1kQlCZ&city=" +
@@ -54,6 +56,7 @@ var getEventsRepos = function (citySearch, startSearch, endSearch) {
             //send fetch data to function that will gather data needed for display  consol
             console.log(eventsArray);
             createEventArray(eventsArray, start, end);
+            getGeoCoord(citySearch);
           }
         });
       } else {
@@ -111,10 +114,12 @@ var displayEvents = function (ticketObj) {
 
 // get OpenTripMap API
 // get geo coordinates
-var getGeoCoord = function () {
+var getGeoCoord = function (citySearch) {
+  var cityInput = citySearch.replaceAll("+", " ");
+
   var geoUrl =
     "https://api.opentripmap.com/0.1/en/places/geoname?name=" +
-    queryString +
+    cityInput +
     "&apikey=5ae2e3f221c38a28845f05b622f8dc4db72d1ad73781713d40b42cea";
 
   fetch(geoUrl).then(function (response) {
@@ -128,8 +133,6 @@ var getGeoCoord = function () {
     }
   });
 };
-
-getGeoCoord();
 
 // get tourist attractions
 var getTouristAttraction = function (data) {
@@ -146,7 +149,10 @@ var getTouristAttraction = function (data) {
   fetch(tourUrl).then(function (response) {
     if (response.ok) {
       response.json().then(function (data) {
-        console.log(data);
+        // console.log(data);
+        var place = data.features;
+        console.log(place);
+        displayTourism(place);
       });
     } else {
       console.log("Error: Tourist Attractions Not Found");
@@ -154,63 +160,19 @@ var getTouristAttraction = function (data) {
   });
 };
 
-//  // get holiday API
-//  var getHoliday = function (eventCountryCode, start, end) {
-//   // Returns an array of dates between the two dates
-//   let startDate = moment(start);
-//   let endDate = moment(end);
-//   let datesArray = [];
+// display tourist attraction data
+var tourismContainer = $("#tourism-container");
+var tourismTitle = $("<h2>").text("Tourist Attractions");
+var tourismContent = $("<div>");
 
-//   for (var m = moment(startDate); m.isSameOrBefore(endDate); m.add(1, "days")) {
-//     datesArray.push(m.format("YYYY-MM-DD"));
-//   }
+var displayTourism = function (place) {
+  for (var i = 0; i < place.length; i++) {
+    var tourismList = $("<li>").text(place[i].properties.name);
+    tourismContent.append(tourismList);
+  }
 
-//   console.log(datesArray);
-//   for (var i = 0; datesArray.length; i++) {
-//     // setTimeout(function () {
-//       var holidayUrl =
-//         "https://holidays.abstractapi.com/v1/?api_key=914c5cd8cbee4eac81585b5ed13d510d&country=" +
-//         eventCountryCode +
-//         "&year=" +
-//         datesArray[i].split("-")[0] +
-//         "&month=" +
-//         datesArray[i].split("-")[1] +
-//         "&day=" +
-//         datesArray[i].split("-")[2];
+  tourismContainer.append(tourismTitle, tourismContent);
+};
 
-//       fetch(holidayUrl).then(function (response) {
-//         response.json().then(function (data) {
-//           console.log(data);
-//         });
-//       });
-//     // }, 1000);
-//   }
-// };
-// // getHoliday();
-
-//var array will have city name, start and end dates
-// var displayHoliday = function() {
-//   for(var i = 0; i < ticketObj.length; i++) {
-
-//     var eventName = ticketObj[i].eventName;
-//     var eventDate = ticketObj[i].eventDate;
-//     var eventUrl = ticketObj[i].eventUrl;
-
-//     var eventEl = document.createElement("div");
-
-//     var nameEl = document.createElement("h2");
-//     nameEl.textContent = eventName;
-
-//     var dateEl = document.createElement("h3");
-//     dateEl.textContent = eventDate;
-
-//     var urlEl = document.createElement("h3");
-//     urlEl.textContent = eventUrl;
-
-//     eventEl.append(nameEl, dateEl, urlEl);
-
-//   eventContainerEl.appendChild(eventEl);
-// }
-// };
 
 searchStrings(queryString);
