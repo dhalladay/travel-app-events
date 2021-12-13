@@ -1,4 +1,5 @@
 var eventContainerEl = document.querySelector("#events-container");
+var searchContainerEl = document.querySelector("#search-container");
 var eventClass = "row bg-dark rounded m-1 p-1 justify-content-between";
 var saveClass = "row bg-secondary rounded m-1 p-1 justify-content-between";
 
@@ -18,24 +19,15 @@ console.log(city)
 };
 
 var displayEvents = function(storedEvent) {
-  for(var i = 3; i < storedEvent.length; i++) {
-    
-    
-    var searchCity = storedEvent[0]
-    .replaceAll("+", " ");
-    var startDate = storedEvent[1]
-    var endDate = storedEvent[2]
-    var eventName = storedEvent[i][0];
-    var eventDate = storedEvent[i][1];
-      var eventUrl = storedEvent[i][2];
-      
-      var eventContainer = document.createElement("ul");
-      eventContainer.className = "container";
-      
-      var eventRow = document.createElement("li");
-      eventRow.className = eventClass;
+  var searchCity = storedEvent[0]
+  .replaceAll("+", " ");
+  var startDate = storedEvent[1]
+  var endDate = storedEvent[2]
 
-      var cityEl = document.createElement("h2");
+  var searchContainer = document.createElement("h2");
+      searchContainer.className = "container";
+
+      var cityEl = document.createElement("h3");
       cityEl.className = "text-center name";
       cityEl.textContent = searchCity;
 
@@ -46,7 +38,24 @@ var displayEvents = function(storedEvent) {
       var endDateEl = document.createElement("p");
       endDateEl.className = "text-center date";
       endDateEl.textContent = endDate;
-            
+
+      searchContainer.append(cityEl, startDateEl, endDateEl)
+      
+      searchContainerEl.appendChild(searchContainer);
+
+  for(var i = 3; i < storedEvent.length; i++) {
+    
+    var eventName = storedEvent[i][0];
+    var eventDate = storedEvent[i][1];
+      var eventUrl = storedEvent[i][2];
+      
+      var eventContainer = document.createElement("ul");
+      eventContainer.className = "container";
+      
+      var eventRow = document.createElement("li");
+      eventRow.className = eventClass;
+
+      
       var nameEl = document.createElement("h3");
       nameEl.className = "text-center name";
       nameEl.textContent = eventName;
@@ -60,13 +69,14 @@ var displayEvents = function(storedEvent) {
       urlEl.href = eventUrl
       urlEl.textContent = "Go to Event";
       
-      eventRow.append(cityEl, startDateEl, endDateEl, nameEl, dateEl, urlEl);
+      eventRow.append(nameEl, dateEl, urlEl);
       eventContainer.append(eventRow);
       
       
       eventContainerEl.appendChild(eventContainer);
     }
 };
+
 showEvents();
 
 
