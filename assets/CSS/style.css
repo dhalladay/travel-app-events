@@ -24,12 +24,18 @@ header {
   top: 0;
   z-index: 9999;
 }
+
 header h1 {
   font-weight: bold;
   font-size: 36px;
   color: #ee6a49;
   margin: 0;
   text-shadow: 0 0 10px rgba(119, 54, 54, 0.5);
+}
+
+header p {
+  color: #ee6a49;
+  margin-top: 16px;
 }
 
 header a {
@@ -107,7 +113,7 @@ main h3{
 /* Meida queries */
 
 @media screen and (max-width: 980px) {
-  header {
+  header h1{
     justify-content: space-between;
   }
 
@@ -131,20 +137,24 @@ main h3{
   header nav li a {
     font-size:calc(12px + 1.5vw);
   }
+
+  .home-page-section {
+    min-height: 400px;
+  }
 }
 
 @media screen and (max-width: 575px) {
-  header {
-    justify-content: center;
+  header h1{
     padding: 2px;
   }
 
   header h1 {
-    align-self: center;
-    width: 100%
+    align-self: center;    width: 100%
   }
 
-  #work {
-    scroll-margin-top: 5em;
+  header p {
+    display: none;
   }
+
+  
 }
