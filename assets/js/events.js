@@ -1,6 +1,7 @@
 var eventContainerEl = document.querySelector("#events-container");
-var holidayContainerEl = document.querySelector("#holiday-container");
 var queryString = document.location.search;
+var eventClass = "row bg-dark rounded m-1 p-1 justify-content-between";
+var saveClass = "row bg-secondary rounded m-1 p-1 justify-content-between";
 
 //modal return button listener
 $("#return-button").click(function (event) {
@@ -22,8 +23,7 @@ var searchStrings = function (queryString) {
   //extract endDate from end parameter
   var endString = splitQuery[2];
   var splitEnd = endString.split("=");
-  var endSearch = splitEnd[1];
-  // getEventsRepos(citySearch, startSearch, endSearch);
+  var endSearch = moment(splitEnd[1]).add(2, 'days').format("YYYY-MM-DD");
   getEventsRepos(citySearch, startSearch, endSearch);
 
 };
@@ -80,37 +80,15 @@ var createEventArray = function (eventsArray, start, end) {
     var eventDate = eventsArray[i].dates.start.localDate;
     var eventUrl = eventsArray[i].url;
     //create variable for country code that can be sent to holiday API
-    var eventCountryCode =
-      eventsArray[i]._embedded.venues[0].country.countryCode;
-    tempArr = { eventName, eventDate, eventUrl };
+
+    // var eventCountryCode=eventsArray[i]._embedded.venues[0].country.countryCode;
+    tempArr = {eventName,eventDate,eventUrl};
+
     ticketObj.push(tempArr);
   }
   displayEvents(ticketObj);
-  // getHoliday(eventCountryCode, start, end);
 };
 
-var displayEvents = function (ticketObj) {
-  for (var i = 0; i < ticketObj.length; i++) {
-    var eventName = ticketObj[i].eventName;
-    var eventDate = ticketObj[i].eventDate;
-    var eventUrl = ticketObj[i].eventUrl;
-
-    var eventEl = document.createElement("div");
-
-    var nameEl = document.createElement("h2");
-    nameEl.textContent = eventName;
-
-    var dateEl = document.createElement("h3");
-    dateEl.textContent = eventDate;
-
-    var urlEl = document.createElement("h3");
-    urlEl.textContent = eventUrl;
-
-    eventEl.append(nameEl, dateEl, urlEl);
-
-    eventContainerEl.appendChild(eventEl);
-  }
-};
 
 // get OpenTripMap API
 // get geo coordinates
@@ -175,4 +153,75 @@ var displayTourism = function (place) {
 };
 
 
-searchStrings(queryString);
+var displayEvents = function(ticketObj) {
+  for(var i = 0; i < ticketObj.length; i++) {
+    
+    var eventName = ticketObj[i].eventName;
+    var eventDate = ticketObj[i].eventDate;
+      var eventUrl = ticketObj[i].eventUrl;
+      
+      var eventContainer = document.createElement("ul");
+      eventContainer.className = "container";
+      
+      var eventRow = document.createElement("li");
+      eventRow.className = eventClass;
+            
+      var nameEl = document.createElement("h3");
+      nameEl.className = "text-center name";
+      nameEl.textContent = eventName;
+      
+      var dateEl = document.createElement("p");
+      nameEl.className = "text-center date";
+      dateEl.textContent = eventDate;
+      
+      var urlEl = document.createElement("a");
+      nameEl.className = "text-center link";
+      urlEl.href = eventUrl
+      urlEl.textContent = "Go to Event";
+      
+      eventRow.append(nameEl, dateEl, urlEl);
+      eventContainer.append(eventRow);
+      
+      
+      eventContainerEl.appendChild(eventContainer);
+    }
+};
+
+$("#events-container").on('click', function(event) {
+  var event=event.target;
+  $(event).closest("li").toggleClass("bg-dark bg-secondary");
+});
+
+$('#save-btn').on('click', function() {
+  
+  var splitQuery = queryString.split("&");
+  //extract city from city query parameter
+  var cityString = splitQuery[0];
+  var splitCity = cityString.split("=");
+  var citySearch = splitCity[1];
+  //extract startDate from start parameter
+  var startString = splitQuery[1];
+  var splitStart = startString.split('=');
+  var startSearch = splitStart[1]
+  //extract endDate from end parameter
+  var endString = splitQuery[2]
+  var splitEnd = endString.split("=");
+  var endSearch = splitEnd[1];
+  var eventsArray = [citySearch, startSearch, endSearch];
+  var titleContent = $('.bg-secondary').children("h3");
+  var paragraphContent = $('.bg-secondary').children("p");
+  var urlContent = $('.bg-secondary').children("a");
+  for (var i=0; i < paragraphContent.length; i++) {
+    var a = titleContent[i].textContent;
+    var b = paragraphContent[i].textContent;
+    var c = urlContent[i].href;
+    var tempArray = [a, b, c]
+    eventsArray.push(tempArray);
+  }
+  console.log(eventsArray);
+
+  localStorage.eventsArray = JSON.stringify(eventsArray);
+});
+
+      searchStrings(queryString);
+
