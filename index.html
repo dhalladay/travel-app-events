@@ -4,14 +4,14 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Travel App Events</title>
+  <title>Chripp.</title>
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.3.1/css/bootstrap.min.css">
   <link rel="stylesheet" href="./assets/CSS/style.css" />
 </head>
 <body>
   <!-- navigation -->
   <header>
-  <h1><a href="/" class="align-middle">Trip Planner</a></h1>
+    <h1><a href="/" class="align-middle">Chrip</a></h1>
     <nav><!-- Unordered list element -->
       <ul>
         <!-- List item element-->
@@ -26,81 +26,48 @@
   </header>
 
     <!-- Plan Trip -->
-  <main>
-    <section id="planTripsHomePage">
-      <div class="flex-row">
-        <h2 class="section-title secondary-border">Plan a Trip</h2>
-      </div>
-      <!-- Fill out form -->
-      <form id="plan-form">
-        <div class="form-group">
-          <!-- be able to select location -->
-          <label for="city-input">City Name: </label>
-          <input id="city-input" type="text" name="trip-location" placeholder="eg. new york city" />
-        </div>
-        <div class="form-group">
-          <!-- calander date picker goes here -->
-          <div id="start-date-div">
-            <label for="start-date-input">Trip start Date: </label>
-            <input id="start-date-input" type="text" name="trip-start-date" placeholder="yyyy-mm-dd" />
+  <main class="container-fluid">
+    <div class="row justify-content-between h-100">
+      <section class="home-page-section col-sm-12 col-lg-6 py-3">
+        <div id="planner" class="options rounded h-100">
+          <div>
+            <h2 class="section-title secondary-border">Plan a Trip</h2>
           </div>
-          <div id="end-date-div">
-            <label for="end-date-input">Trip end Date: </label>
-            <input id="end-date-input" type="text" name="trip-end-date" placeholder="yyyy-mm-dd" />
-          </div>
+          <!-- Fill out form -->
+          <form id="plan-form" class="">
+            <div class="form-group">
+              <!-- be able to select location -->
+              <label for="city-input">City Name: </label>
+              <input id="city-input" type="text" name="trip-location" placeholder="eg. new york city" />
+            </div>
+            <div class="form-group">
+              <!-- calander date picker goes here -->
+              <div id="start-date-div">
+                <label for="start-date-input">Trip start Date: </label>
+                <input id="start-date-input" type="text" name="trip-start-date" placeholder="yyyy-mm-dd" />
+              </div>
+              <div id="end-date-div">
+                <label for="end-date-input">Trip end Date: </label>
+                <input id="end-date-input" type="text" name="trip-end-date" placeholder="yyyy-mm-dd" />
+              </div>
+            </div>
+            <div class="form-group">
+              <button class="btn btn-light btn-sm" id="submit-trip" type="submit">Submit Trip</button>
+              <!-- add know before you go link pop up after click event-->
+            </div>
+          </form>
         </div>
-        <div class="form-group">
-          <button class="btn btn-light btn-sm" id="submit-trip" type="submit">Submit Trip</button>
-          <!-- add know before you go link pop up after click event-->
+      </section>
+      <!-- My trips -->
+      <section class="home-page-section col-sm-12 col-lg-6 py-3">
+        <div id="trip" class="options rounded h-100">
+          <div>
+          <h2 class="section-title secondary-border">Trip</h2>
         </div>
-      </form>
-    </section>
-    
-    <!-- My trips -->
-    <section id="myTripsHomePage">
-      <div>
-        <a href="HTML/myTrips.html">My Trips</a>
-      </div>
-    </section>
-    
-    <!-- Already Here Section -->
-    <section id="eventsHomePage">
-      <div class="flex-row">
-        <h2 class="section-title secondary-border" id="event-title-alreadyInTown">Already in town? Find events going on near you!</h2>
-      </div>
-      <!-- events for today -->
-      <h3 class="todays-events">Find Events Going on Today</h3>
-      <form id="todays-form">
-        <div class="form-group">
-          <!-- be able to select location -->
-          <label for="current-city">Search for events in: </label>
-          <input id="current-city" type="text" name="current-location" placeholder="Enter Your Location" />
+        <button class="btn btn-light btn-sm" id="submit-trip" type="submit">See Trip</button>
         </div>
-        <div class="form-group">
-          <button class="btn btn-light btn-sm" id="find-today-events" type="submit">Find Events</button>
-          <!-- add know before you go link pop up after click event-->
-        </div>
-      </form>
-      
-      <!-- events for later date -->
-      <h3 class="laterDate-events">Find Events Going on Later</h3>
-      <form id="laterDate-form">
-        <div class="form-group">
-          <!-- be able to select location -->
-          <label for="future-city">Search for events in: </label>
-          <input id="future-city" type="text" name="future-destination" placeholder="Enter Your Location" />
-        </div>
-        <div class="form-group">
-          <!-- calander date picker goes here -->
-          <label for="future-date">Search for events on: </label>
-          <input id="future-date" type="" name="trip-date" placeholder="Enter Trip Date" />
-        </div>
-        <div class="form-group">
-          <button class="btn btn-light btn-sm" id="find-future-events" type="submit">Find Events</button>
-          <!-- add know before you go link pop up after click event-->
-        </div>
-      </form>  
-    </section>
+      </section>
+    </div>
   </main>
 
    <!-- modals -->
