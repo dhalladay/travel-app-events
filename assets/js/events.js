@@ -9,6 +9,7 @@ $('#return-button').click(function(event) {
   window.location.href = "../index.html";
 });
 
+
 var searchStrings = function(queryString) {
   //split string into key pairs
   var splitQuery = queryString.split("&");
@@ -78,10 +79,9 @@ var createEventArray = function(eventsArray, start, end) {
   displayEvents(ticketObj);
 };
 
-//create hmtl tags
 var displayEvents = function(ticketObj) {
   for(var i = 0; i < ticketObj.length; i++) {
-
+    
     var eventName = ticketObj[i].eventName;
     var eventDate = ticketObj[i].eventDate;
       var eventUrl = ticketObj[i].eventUrl;
@@ -119,6 +119,7 @@ $("#events-container").on('click', function(event) {
 });
 
 $('#save-btn').on('click', function() {
+  
   var splitQuery = queryString.split("&");
   //extract city from city query parameter
   var cityString = splitQuery[0];
@@ -133,7 +134,6 @@ $('#save-btn').on('click', function() {
   var splitEnd = endString.split("=");
   var endSearch = splitEnd[1];
   var eventsArray = [citySearch, startSearch, endSearch];
-
   var titleContent = $('.bg-secondary').children("h3");
   var paragraphContent = $('.bg-secondary').children("p");
   var urlContent = $('.bg-secondary').children("a");
@@ -142,7 +142,7 @@ $('#save-btn').on('click', function() {
     var b = paragraphContent[i].textContent;
     var c = urlContent[i].href;
     var tempArray = [a, b, c]
-    eventsTempArray.push(tempArray);
+    eventsArray.push(tempArray);
   }
   console.log(eventsArray);
 
