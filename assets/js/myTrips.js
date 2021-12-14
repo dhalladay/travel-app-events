@@ -27,17 +27,13 @@ var displayEvents = function(storedEvent) {
 
       var cityEl = document.createElement("h3");
       cityEl.className = "text-center name";
-      cityEl.textContent = searchCity;
+      cityEl.textContent = "Your trip to " + searchCity;
 
       var startDateEl = document.createElement("p");
       startDateEl.className = "text-center date";
-      startDateEl.textContent = startDate;
+      startDateEl.textContent = "From " + startDate + " to " + endDate;
 
-      var endDateEl = document.createElement("p");
-      endDateEl.className = "text-center date";
-      endDateEl.textContent = endDate;
-
-      searchContainer.append(cityEl, startDateEl, endDateEl)
+      searchContainer.append(cityEl, startDateEl)
       
       searchContainerEl.appendChild(searchContainer);
 
