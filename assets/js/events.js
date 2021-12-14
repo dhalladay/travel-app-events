@@ -181,18 +181,18 @@ var displayEvents = function (ticketObj) {
     eventContainer.className = "container";
 
     var eventRow = document.createElement("li");
-    eventRow.className = eventClass;
+    eventRow.className = "row justify-content-between" + eventClass;
 
     var nameEl = document.createElement("h3");
-    nameEl.className = "text-center name";
+    nameEl.className = "text-center name col-4";
     nameEl.textContent = eventName;
 
     var dateEl = document.createElement("p");
-    nameEl.className = "text-center date";
+    nameEl.className = "text-center date col-4";
     dateEl.textContent = eventDate;
 
     var urlEl = document.createElement("a");
-    nameEl.className = "text-center link";
+    nameEl.className = "text-center link col-4";
     urlEl.href = eventUrl;
     urlEl.setAttribute("target", "_blank");
     urlEl.textContent = "Go to Event";
