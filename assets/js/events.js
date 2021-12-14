@@ -2,9 +2,9 @@ var eventContainerEl = document.querySelector("#events-container");
 var queryString = document.location.search;
 var eventClass = "row bg-dark rounded m-1 p-1 justify-content-between";
 var saveClass = "row bg-secondary rounded m-1 p-1 justify-content-between";
-var page = 1;
-var totalPages = 0;
-var pageChangeObj = [];
+// var page = 1;
+// var totalPages = 0;
+// var pageChangeObj = [];
 
 // $('#page-up').on('click', function() {
 //   if (page <= (totalPages - 1)) {
@@ -43,7 +43,7 @@ var searchStrings = function (queryString) {
   //extract endDate from end parameter
   var endString = splitQuery[2];
   var splitEnd = endString.split("=");
-  var endSearch = moment(splitEnd[1]).add(2, 'days').format("YYYY-MM-DD");
+  var endSearch = moment(splitEnd[1]).add(2, "days").format("YYYY-MM-DD");
   getEventsRepos(citySearch, startSearch, endSearch);
 };
 
@@ -104,13 +104,12 @@ var createEventArray = function (eventsArray, start, end) {
     //create variable for country code that can be sent to holiday API
 
     // var eventCountryCode=eventsArray[i]._embedded.venues[0].country.countryCode;
-    tempArr = {eventName,eventDate,eventUrl};
+    tempArr = { eventName, eventDate, eventUrl };
 
     ticketObj.push(tempArr);
   }
   displayEvents(ticketObj);
 };
-
 
 // get OpenTripMap API
 // get geo coordinates
@@ -160,65 +159,59 @@ var getTouristAttraction = function (data) {
 // display tourist attraction data
 var tourismContainer = $("#tourism-container");
 var tourismTitle = $("<h2>").text("Tourist Attractions");
-var tourismContent = $("<div>");
+var tourismContent = $("<div>").addClass("list-group");
 
 var displayTourism = function (place) {
   for (var i = 0; i < place.length; i++) {
-    var tourismList = $("<li>").text(place[i].properties.name);
+    var tourismList = $("<li>")
+      .text(place[i].properties.name)
+      .addClass("list-group-item ");
     tourismContent.append(tourismList);
   }
 
   tourismContainer.append(tourismTitle, tourismContent);
 };
 
-
-var displayEvents = function(ticketObj) {
-  $("#events-container").children().remove();
-  for(var i = 0; i < ticketObj.length; i++) {
-    
+// display Events
+var displayEvents = function (ticketObj) {
+  for (var i = 0; i < ticketObj.length; i++) {
     var eventName = ticketObj[i].eventName;
     var eventDate = ticketObj[i].eventDate;
-      var eventUrl = ticketObj[i].eventUrl;
-      
-      var eventContainer = document.createElement("ul");
-      eventContainer.className = "container";
-      
-      var eventRow = document.createElement("li");
-      eventRow.className = eventClass;
-            
-      var nameEl = document.createElement("h3");
-      nameEl.className = "text-center name";
-      nameEl.textContent = eventName;
-      
-      var dateEl = document.createElement("p");
-      nameEl.className = "text-center date";
-      dateEl.textContent = eventDate;
-      
-      var urlEl = document.createElement("a");
-      nameEl.className = "text-center link";
-      urlEl.href = eventUrl
-      urlEl.textContent = "Go to Event";
-      
-      eventRow.append(nameEl, dateEl, urlEl);
-      eventContainer.append(eventRow);
-      
-      
-      eventContainerEl.appendChild(eventContainer);
-    }
+    var eventUrl = ticketObj[i].eventUrl;
+
+    var eventContainer = document.createElement("ul");
+    eventContainer.className = "container";
+
+    var eventRow = document.createElement("li");
+    eventRow.className = eventClass;
+
+    var nameEl = document.createElement("h3");
+    nameEl.className = "text-center name";
+    nameEl.textContent = eventName;
+
+    var dateEl = document.createElement("p");
+    nameEl.className = "text-center date";
+    dateEl.textContent = eventDate;
+
+    var urlEl = document.createElement("a");
+    nameEl.className = "text-center link";
+    urlEl.href = eventUrl;
+    urlEl.textContent = "Go to Event";
+
+    eventRow.append(nameEl, dateEl, urlEl);
+    eventContainer.append(eventRow);
+
+    eventContainerEl.appendChild(eventContainer);
+  }
 };
 
-// var displayPage = function(totalPages) {
-// $("#pages").text(`Page ${page} of ${totalPages}`);
-// window.totalPages = Number(totalPages);
-// };
+$("#events-container").on("click", function (event) {
+  var event = event.target;
 
-$("#events-container").on('click', function(event) {
-  var event=event.target;
   $(event).closest("li").toggleClass("bg-dark bg-secondary");
 });
 
-$('#save-btn').on('click', function() {
-  
+$("#save-btn").on("click", function () {
   var splitQuery = queryString.split("&");
   //extract city from city query parameter
   var cityString = splitQuery[0];
@@ -226,28 +219,33 @@ $('#save-btn').on('click', function() {
   var citySearch = splitCity[1];
   //extract startDate from start parameter
   var startString = splitQuery[1];
-  var splitStart = startString.split('=');
-  var startSearch = splitStart[1]
+  var splitStart = startString.split("=");
+  var startSearch = splitStart[1];
   //extract endDate from end parameter
-  var endString = splitQuery[2]
+  var endString = splitQuery[2];
   var splitEnd = endString.split("=");
   var endSearch = splitEnd[1];
   var eventsArray = [citySearch, startSearch, endSearch];
-  var titleContent = $('.bg-secondary').children("h3");
-  var paragraphContent = $('.bg-secondary').children("p");
-  var urlContent = $('.bg-secondary').children("a");
-  for (var i=0; i < paragraphContent.length; i++) {
+  var titleContent = $(".bg-secondary").children("h3");
+  var paragraphContent = $(".bg-secondary").children("p");
+  var urlContent = $(".bg-secondary").children("a");
+  for (var i = 0; i < paragraphContent.length; i++) {
     var a = titleContent[i].textContent;
     var b = paragraphContent[i].textContent;
     var c = urlContent[i].href;
-    var tempArray = [a, b, c]
+    var tempArray = [a, b, c];
     eventsArray.push(tempArray);
+
   }
   console.log(eventsArray);
 
-  localStorage.eventsArray = JSON.stringify(eventsArray);
+  var saveEvents = function() {
+    localStorage.setItem("eventsArray",JSON.stringify(eventsArray));
+  }
+
+  // var storedEvent = {};
+// console.log(storedEvent[0]); 
 });
 
-
-
 searchStrings(queryString);
+
