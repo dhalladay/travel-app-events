@@ -161,6 +161,19 @@ main h3{
   height: 75px;
 }
 
+/* display tourism data  */
+#tourism-container {
+  margin-left: 50px;
+}
+
+.list-group-item {
+  background-color: #f08d14;
+  color: whitesmoke;
+  margin: 6px 0;
+  border: none;
+  border-radius: 5px;
+}
+
 /* MEDIA QUERY FOR TABLETS AND SMALLER */
 @media screen and (max-width: 770px) {
   #event-title-alreadyInTown{

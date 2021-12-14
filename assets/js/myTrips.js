@@ -1,3 +1,4 @@
+
 var eventContainerEl = document.querySelector("#events-container");
 var searchContainerEl = document.querySelector("#search-container");
 var eventClass = "row bg-dark rounded m-1 p-1 justify-content-between";
@@ -79,5 +80,4 @@ $("#events-container").on('click', function(event) {
   $(event).closest("li").toggleClass("bg-dark bg-secondary");
 });
 showEvents();
-
 
