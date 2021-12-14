@@ -6,22 +6,22 @@ var page = 1;
 var totalPages = 0;
 var pageChangeObj = [];
 
-$('#page-up').on('click', function() {
-  if (page <= (totalPages - 1)) {
-    page++;
-    searchStrings(queryString);
-  }
-});
+// $('#page-up').on('click', function() {
+//   if (page <= (totalPages - 1)) {
+//     page++;
+//     searchStrings(queryString);
+//   }
+// });
 
-$('#page-down').on('click', function() {
-  if (page > 1) {
-    page--;
-    searchStrings(queryString);
-  } else if (page = 0) {
-    page = 1;
-    searchStrings(queryString);
-  }
-});
+// $('#page-down').on('click', function() {
+//   if (page > 1) {
+//     page--;
+//     searchStrings(queryString);
+//   } else if (page = 0) {
+//     page = 1;
+//     searchStrings(queryString);
+//   }
+// });
 
 //modal return button listener
 $("#return-button").click(function (event) {
@@ -75,11 +75,11 @@ var getEventsRepos = function (citySearch, startSearch, endSearch) {
           } else {
             var eventsArray = data._embedded.events;
             //send fetch data to function that will gather data needed for display  consol
-            displayPage(data.page.totalPages);
+            // displayPage(data.page.totalPages);
             createEventArray(eventsArray, start, end);
             getGeoCoord(citySearch);
-            console.log(page);
-            console.log(eventsArray);
+            // console.log(page);
+            // console.log(eventsArray);
           }
         });
       } else {
@@ -207,10 +207,10 @@ var displayEvents = function(ticketObj) {
     }
 };
 
-var displayPage = function(totalPages) {
-$("#pages").text(`Page ${page} of ${totalPages}`);
-window.totalPages = Number(totalPages);
-};
+// var displayPage = function(totalPages) {
+// $("#pages").text(`Page ${page} of ${totalPages}`);
+// window.totalPages = Number(totalPages);
+// };
 
 $("#events-container").on('click', function(event) {
   var event=event.target;
