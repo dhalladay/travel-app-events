@@ -10,16 +10,16 @@
   <body>
       <!-- navigation -->
       <header>
-        <h1><a href="/" class="align-middle">Trip Planner</a></h1>
+        <h1><a class="align-middle">Trip Planner</a></h1>
             <nav><!-- Unordered list element -->
                 <ul>
                     <!-- List item element-->
                     <li>
-                        <a>My Trips</a>
-                    </li>
-                    <li>
                         <a href="../index.html">Home</a>
                     </li>
+                    <li>
+                      <a>My Trips</a>
+                  </li>
                 </ul>
             </nav>
         </header>
@@ -37,33 +37,10 @@
           <div id="search-container"></div>
           <div id="events-container"></div>
         </div>
-
       <!-- My Trips Section -->
     <section id="my-trips">
         <div class="flex-row">
         <h2 class="section-title secondary-border">My Trips</h2>
-        
-        
-        <!-- button to add new trip -->
-        <p>Add New Trip</p>
-            <!-- Make a pop up for form? add li and put in text and save text? -->
-        <form id="trip-form">
-      <div class="form-group">
-          <!-- be able to select location -->
-        <input type="text" name="trip-location" placeholder="Enter Where You Are Going" />
-      </div>
-      <div class="form-group">
-          <!-- calander date picker goes here -->
-          <input type="" name="trip-date" placeholder="Enter Trip Date" />
-      </div>
-      <div class="form-group">
-        <input type="text" name="trip-details" placeholder="Enter Any Additional Details" />
-    </div>
-      <div class="form-group">
-        <button class="btn" id="save-task" type="submit">Add Trip</button>
-        <!-- add know before you go link pop up after click event-->
-      </div>
-    </form>
             <!-- ul of Trips -->
             <section class="trips-list-wrapper">
                 <ul class="trips-list">
