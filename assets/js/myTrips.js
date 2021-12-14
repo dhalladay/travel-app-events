@@ -1,50 +1,83 @@
+
 var eventContainerEl = document.querySelector("#events-container");
+var searchContainerEl = document.querySelector("#search-container");
+var eventClass = "row bg-dark rounded m-1 p-1 justify-content-between";
+var saveClass = "row bg-secondary rounded m-1 p-1 justify-content-between";
 
-var ticketObj = [{
-  eventDate:"2022-07-03",
-  eventName:"Ty Segall",
-  eventUrl:"https://www.ticketmaster.com/event/Z7r9jZ1AdG0q7",
-  },
-  {
-    eventName: "Ty Segall",
-    eventDate: "2022-07-04",
-    eventUrl: "https://www.ticketmaster.com/event/Z7r9jZ1AdFU1b",
-},
-{
-  eventDate:"2022-07-03",
-  eventName:"Ty Segall",
-  eventUrl:"https://www.ticketmaster.com/event/Z7r9jZ1AdG0q7",
-  },
-  {
-    eventName: "Ty Segall",
-    eventDate: "2022-07-04",
-    eventUrl: "https://www.ticketmaster.com/event/Z7r9jZ1AdFU1b",
-}];
+var showEvents = function() {
+  var storedEvent = localStorage.getItem("eventsArray");
+ 
+  storedEvent = JSON.parse(storedEvent)
 
+  var showEventsEl = document.createElement("a");
+  showEventsEl.textContent = storedEvent;
 
-
-var displayEvents = function() {
-  for(var i = 0; i < ticketObj.length; i++) {
-
-  var eventName = ticketObj[i].eventName;
-  var eventDate = ticketObj[i].eventDate;
-  var eventUrl = ticketObj[i].eventUrl;
-
-    var eventEl = document.createElement("div");
-
-    var nameEl = document.createElement("h2");
-    nameEl.textContent = eventName;
-
-    var dateEl = document.createElement("h3");
-    dateEl.textContent = eventDate;
-
-    var urlEl = document.createElement("h3");
-    urlEl.textContent = eventUrl;
-
-    eventEl.append(nameEl, dateEl, urlEl);
-
-    eventContainerEl.appendChild(eventEl);
-  }
+  displayEvents(storedEvent)
 };
 
-displayEvents(ticketObj);
+var displayEvents = function(storedEvent) {
+  var searchCity = storedEvent[0]
+  .replaceAll("+", " ")
+  .toUpperCase()
+  var startDate = storedEvent[1]
+  var endDate = storedEvent[2]
+
+  var searchContainer = document.createElement("h2");
+      searchContainer.className = "container";
+
+      var cityEl = document.createElement("h3");
+      cityEl.className = "text-center name";
+      cityEl.textContent = searchCity;
+
+      var startDateEl = document.createElement("p");
+      startDateEl.className = "text-center date";
+      startDateEl.textContent = startDate;
+
+      var endDateEl = document.createElement("p");
+      endDateEl.className = "text-center date";
+      endDateEl.textContent = endDate;
+
+      searchContainer.append(cityEl, startDateEl, endDateEl)
+      
+      searchContainerEl.appendChild(searchContainer);
+
+  for(var i = 3; i < storedEvent.length; i++) {
+    
+    var eventName = storedEvent[i][0];
+    var eventDate = storedEvent[i][1];
+      var eventUrl = storedEvent[i][2];
+      
+      var eventContainer = document.createElement("ul");
+      eventContainer.className = "container";
+      
+      var eventRow = document.createElement("li");
+      eventRow.className = eventClass;
+
+      
+      var nameEl = document.createElement("h3");
+      nameEl.className = "text-center name";
+      nameEl.textContent = eventName;
+      
+      var dateEl = document.createElement("p");
+      nameEl.className = "text-center date";
+      dateEl.textContent = eventDate;
+      
+      var urlEl = document.createElement("a");
+      nameEl.className = "text-center link";
+      urlEl.href = eventUrl
+      urlEl.textContent = "Go to Event";
+      
+      eventRow.append(nameEl, dateEl, urlEl);
+      eventContainer.append(eventRow);
+      
+      
+      eventContainerEl.appendChild(eventContainer);
+    }
+    
+};
+$("#events-container").on('click', function(event) {
+  var event=event.target;
+  $(event).closest("li").toggleClass("bg-dark bg-secondary");
+});
+showEvents();
+
