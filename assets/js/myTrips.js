@@ -7,10 +7,6 @@ var showEvents = function() {
   var storedEvent = localStorage.getItem("eventsArray");
  
   storedEvent = JSON.parse(storedEvent)
-  console.log(storedEvent[0])
-  var city = storedEvent[0]
-  .replaceAll("+", " ");
-console.log(city)
 
   var showEventsEl = document.createElement("a");
   showEventsEl.textContent = storedEvent;
@@ -20,7 +16,8 @@ console.log(city)
 
 var displayEvents = function(storedEvent) {
   var searchCity = storedEvent[0]
-  .replaceAll("+", " ");
+  .replaceAll("+", " ")
+  .toUpperCase()
   var startDate = storedEvent[1]
   var endDate = storedEvent[2]
 
@@ -75,8 +72,12 @@ var displayEvents = function(storedEvent) {
       
       eventContainerEl.appendChild(eventContainer);
     }
+    
 };
-
+$("#events-container").on('click', function(event) {
+  var event=event.target;
+  $(event).closest("li").toggleClass("bg-dark bg-secondary");
+});
 showEvents();
 
 
