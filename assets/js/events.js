@@ -214,10 +214,19 @@ $("#save-btn").on("click", function () {
     var c = urlContent[i].href;
     var tempArray = [a, b, c];
     eventsArray.push(tempArray);
+
   }
   console.log(eventsArray);
 
-  localStorage.eventsArray = JSON.stringify(eventsArray);
+  var saveEvents = function() {
+    localStorage.setItem("eventsArray",JSON.stringify(eventsArray));
+  }
+
+  // var storedEvent = {};
+// console.log(storedEvent[0]);
+    
+
+  
 });
 
 searchStrings(queryString);
