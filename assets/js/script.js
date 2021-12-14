@@ -5,6 +5,7 @@ var endDateInput = document.querySelector("#end-date-input");
 var currentCityInput = document.querySelector("#current-city");
 var futureCityInput = document.querySelector("#future-city");
 var futureDateInput = document.querySelector("#future-date");
+var page = 1;
 
 $("#start-date-input").datepicker({
   minDate: 0,
