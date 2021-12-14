@@ -75,9 +75,5 @@ var displayEvents = function(storedEvent) {
     }
     
 };
-$("#events-container").on('click', function(event) {
-  var event=event.target;
-  $(event).closest("li").toggleClass("bg-dark bg-secondary");
-});
 showEvents();
 

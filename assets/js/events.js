@@ -61,9 +61,7 @@ var getEventsRepos = function (citySearch, startSearch, endSearch) {
     start +
     "T03:00:00Z&endDateTime=" +
     end +
-    "T00:00:00Z&page=" + 
-    page +
-    "&sort=date,asc";
+    "T00:00:00Z&sort=date,asc";
 
   //fetch request to ticketmaster
   fetch(apiURL)
@@ -196,6 +194,7 @@ var displayEvents = function (ticketObj) {
     var urlEl = document.createElement("a");
     nameEl.className = "text-center link";
     urlEl.href = eventUrl;
+    urlEl.setAttribute("target", "_blank");
     urlEl.textContent = "Go to Event";
 
     eventRow.append(nameEl, dateEl, urlEl);
@@ -210,6 +209,17 @@ $("#events-container").on("click", function (event) {
 
   $(event).closest("li").toggleClass("bg-dark bg-secondary");
 });
+
+// $("#tourism-container").on("click", function (event) {
+//   var event = event.target;
+
+//   $(event).closest("li").toggleClass("bg-secondary");
+// });
+
+var saveEvents = function(eventsArray) {
+  localStorage.setItem("eventsArray",JSON.stringify(eventsArray));
+  window.location.href = "./myTrips.html"
+}
 
 $("#save-btn").on("click", function () {
   var splitQuery = queryString.split("&");
@@ -235,16 +245,9 @@ $("#save-btn").on("click", function () {
     var c = urlContent[i].href;
     var tempArray = [a, b, c];
     eventsArray.push(tempArray);
-
   }
-  console.log(eventsArray);
+  saveEvents(eventsArray)
 
-  var saveEvents = function() {
-    localStorage.setItem("eventsArray",JSON.stringify(eventsArray));
-  }
-
-  // var storedEvent = {};
-// console.log(storedEvent[0]); 
 });
 
 searchStrings(queryString);
