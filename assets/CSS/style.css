@@ -15,7 +15,6 @@ body {
 }
 header {
   position: absolute;
-  height: 12%;
   width: 100%;
   background-color: #000000;
   display: flex;
@@ -68,6 +67,8 @@ header nav ul li a:hover {
 
 .container { 
   width: 100%;
+  padding-left: 0px;
+  padding-left: 0px;
 }
 
 section {
@@ -86,6 +87,7 @@ section {
   float: center;
   background-repeat: no-repeat;
   background-size: cover;
+  height: 100%;
   }
 
 #my-trips {
@@ -135,7 +137,6 @@ h2{
 #submit-trip:hover {
   background: #ee6a49;
   color: #ffffff;
-  border-radius: 15px;
   text-shadow: none;
 }
 #submit-trip {
@@ -154,9 +155,8 @@ h2{
   border: 2px solid var(--grey);
 }
 
-/* display tourism data  */
-#tourism-container {
-  margin-left: 50px;
+.list-group {
+  width: 100%;
 }
 
 .list-group-item {
@@ -165,9 +165,19 @@ h2{
   margin: 6px 0;
   border: none;
   border-radius: 5px;
+  width: 100%;
 }
 
-/* events.html css styling */
+/* events.html specific css styling */
+
+
+#upcoming-events {
+  margin: 20px 0px;
+}
+
+#tourist-locations {
+  margin: 20px 0px 20px 40px;
+}
 
 #upcoming-events, #tourist-locations, #trip-content {
   background-color: rgba(0, 0, 0, 0.5)
@@ -175,6 +185,21 @@ h2{
 
 .events-container {
   background:rgba(0, 0, 0, 0.5)
+}
+
+.btn-light:hover, .btn-light:active {
+  background-color: rgba(0, 0, 0, 0.05);
+}
+
+.event-list:hover {
+  transform: scale(1.1);
+  transition: .2s;
+}
+
+/* mytrips specific styling */
+
+#trip-content {
+  margin: 20px 0px;
 }
 
 /* MEDIA QUERY FOR TABLETS AND SMALLER */

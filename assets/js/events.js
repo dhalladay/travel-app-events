@@ -1,7 +1,7 @@
 var eventContainerEl = document.querySelector("#events-container");
 var queryString = document.location.search;
-var eventClass = "row bg-dark rounded m-1 p-1 justify-content-between";
-var saveClass = "row bg-secondary rounded m-1 p-1 justify-content-between";
+var eventClass = "row bg-dark rounded m-1 p-1 justify-content-between event-list";
+var saveClass = "row bg-secondary rounded m-1 p-1 justify-content-between event-list";
 // var page = 1;
 // var totalPages = 0;
 // var pageChangeObj = [];
