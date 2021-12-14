@@ -1,64 +1,39 @@
 <!DOCTYPE html>
 <html>
     <head>
-    <title>My Trips</title>
-    <link href="../CSS/style.css" rel="stylesheet">
+    <title>Chrip | Upcoming Trip</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.3.1/css/bootstrap.min.css">
+    <link href="../assets/CSS/style.css" rel="stylesheet">
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   </head>
   <body>
       <!-- navigation -->
-      <header>
-        <h1><a href="/">Trip Planner</a></h1>
-            <nav><!-- Unordered list element -->
-                <ul>
-                    <!-- List item element-->
-                    <li>
-                        <a>My Trips</a>
-                    </li>
-                    <li>
-                        <a href="../index.html">Events</a>
-                    </li>
-                </ul>
-            </nav>
-        </header>
-
-
-      <!-- My Trips Section -->
-    <section id="my-trips">
-        <div class="flex-row">
-        <h2 class="section-title secondary-border">My Trips</h2>
-        
-        
-        <!-- button to add new trip -->
-        <p>Add New Trip</p>
-            <!-- Make a pop up for form? add li and put in text and save text? -->
-        <form id="trip-form">
-      <div class="form-group">
-          <!-- be able to select location -->
-        <input type="text" name="trip-location" placeholder="Enter Where You Are Going" />
+    <header>
+      <h1><a class="align-middle">Chrip</a></h1>
+          <nav><!-- Unordered list element -->
+              <ul>
+                  <!-- List item element-->
+                  <li>
+                      <a href="../index.html">Home</a>
+                  </li>
+                  <li>
+                    <a>Upcoming Trip</a>
+                </li>
+              </ul>
+          </nav>
+    </header>
+    <main>
+      <div id="trip-content" class="rounded shadow m-3 p-3">
+        <div id="search-container"></div>
+        <div id="events-container"></div>
       </div>
-      <div class="form-group">
-          <!-- calander date picker goes here -->
-          <input type="" name="trip-date" placeholder="Enter Trip Date" />
-      </div>
-      <div class="form-group">
-        <input type="text" name="trip-details" placeholder="Enter Any Additional Details" />
-    </div>
-      <div class="form-group">
-        <button class="btn" id="save-task" type="submit">Add Trip</button>
-        <!-- add know before you go link pop up after click event-->
-      </div>
-    </form>
-            <!-- ul of Trips -->
-            <section class="trips-list-wrapper">
-                <ul class="trips-list">
-                    <!-- li's go here -->
-                </ul>
-            </section>
-        </div>
-    </section>
+    </main>
     
-    <script src="script.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.3.1/js/bootstrap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.29.1/moment.min.js"></script>
+    <script src="../assets/js/myTrips.js"></script>
+    
   </body>
 </html>

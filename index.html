@@ -1,80 +1,108 @@
 <!DOCTYPE html>
 <html lang="en">
-    <head>
-        <link rel="stylesheet" href="CSS/style.css" />
-        <meta charset="UTF-8" />
-        <title>Travel App Events</title>
-        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    </head>
-    <body>
-       <!-- navigation -->
-        <header>
-        <h1><a href="/">Trip Planner</a></h1>
-            <nav><!-- Unordered list element -->
-                <ul>
-                    <!-- List item element-->
-                    <li>
-                        <a href="HTML/myTrips.html">My Trips</a>
-                    </li>
-                    <li>
-                        <a href="#events">Events</a>
-                    </li>
-                </ul>
-            </nav>
-        </header>
 
-  
-    <!-- hero -->
-    <section class="hero">
-        <div class="hero-img">
-            <!-- Add background image and alt text -->
-            <img src="images/" alt=""  class="hero-backgroundimg"/>
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Chrip</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.3.1/css/bootstrap.min.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.12.1/themes/base/jquery-ui.css">
+  <link rel="stylesheet" href="./assets/CSS/style.css" />
+</head>
+<body>
+  <!-- navigation -->
+  <header>
+  <h1><a class="align-middle">Chrip</a></h1>
+    <nav><!-- Unordered list element -->
+      <ul>
+        <!-- List item element-->
+        <li>
+          <a>Home</a>
+        </li>
+        <li>
+          <a href="HTML/myTrips.html">My Trips</a>
+        </li>
+      </ul>
+    </nav>
+  </header>
+
+    <!-- Plan Trip -->
+  <main> 
+    <section id="planTripsHomePage" class="repeat">
+      <div class="flex-row">
+        <h2 class="section-title secondary-border">Plan a Trip</h2>
+      </div>
+      <!-- Fill out form -->
+      <form id="plan-form">
+        <div class="form-group">
+          <!-- be able to select location -->
+          <label class="labels" for="city-input">City Name: </label>
+          <input id="city-input" type="text" name="trip-location" placeholder="eg. salt lake city" />
         </div>
-    </section>
-
-    <!-- Already Here Section -->
-    <section id="events">
-        <div class="flex-row">
-        <h2 class="section-title secondary-border">Already on your trip? Find events going on near you!</h2>
+        <div class="form-group">
+          <!-- calander date picker goes here -->
+          <div id="start-date-div">
+            <label class="labels" for="start-date-input">Trip start Date: </label>
+            <input id="start-date-input" type="text" name="trip-start-date" placeholder="yyyy-mm-dd" />
+          </div>
+          <div id="end-date-div">
+            <label class="labels" for="end-date-input">Trip end Date: </label>
+            <input id="end-date-input" type="text" name="trip-end-date" placeholder="yyyy-mm-dd" />
+          </div>
         </div>
-        <!-- events for today -->
-        <h3 class="todays-events">Find Events Going on Today</h3>
-            <form id="todays-form">
-                <div class="form-group">
-                    <!-- be able to select location -->
-                    <input type="text" name="trip-location" placeholder="Enter Your Location" />
-                    <!-- use current location -->
-                    <button class="btn" id="current-location" type="">Use Current Location</button>
-                </div>
-                <div class="form-group">
-                    <button class="btn" id="find-events" type="submit">Find Events</button>
-                    <!-- add know before you go link pop up after click event-->
-                </div>
-            </form>
-
-        <!-- events for later date -->
-            <h3 class="laterDate-events">Find Events Going on Later</h3>
-            <form id="laterDate-form">
-                <div class="form-group">
-                    <!-- be able to select location -->
-                    <input type="text" name="trip-location" placeholder="Enter Your Location" />
-                    <!-- use current location -->
-                    <button class="btn" id="current-location" type="">Use Current Location</button>
-                </div>
-                <div class="form-group">
-                    <!-- calander date picker goes here -->
-                    <input type="" name="trip-date" placeholder="Enter Trip Date" />
-                </div>
-                <div class="form-group">
-                    <button class="btn" id="find-events" type="submit">Find Events</button>
-                    <!-- add know before you go link pop up after click event-->
-                </div>
-            </form>
-
+        <div class="form-group">
+          <button class="btn btn-light btn-sm" id="submit-trip" type="submit">Submit Trip</button>
+          <!-- add know before you go link pop up after click event-->
+        </div>
+      </form>
     </section>
+  </main>
 
-    <script src="script.js"></script>
-  </body>
+   <!-- modals -->
+  <!-- missing search parameters modal -->
+  <div id="missing-param-modal" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="missing-error" aria-describedby="missing-help" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h3 id="missing-error">Missing search data</h3>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+          <p id ="missing-help">Please be sure to include all required search fields before pressing submit. If no end date is included, your search will only contain events for the start date.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+    
+  <!-- missing search parameters modal -->
+  <div id="date-order-modal" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="date-order-error" aria-describedby="date-order-help" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h3 id="date-order-error">Whoa there Time Traveller!</h3>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+          <p id ="date-order-help">Your start date is after the end date of your trip. We can only search chronologically for the time being.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+
+    
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jqueryui-touch-punch/0.2.3/jquery.ui.touch-punch.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.15.0/umd/popper.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.3.1/js/bootstrap.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.29.1/moment.min.js"></script>
+  <script src="./assets/js/script.js"></script>
+</body>
 </html>
 
 <!--  -->
