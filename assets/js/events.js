@@ -183,8 +183,6 @@ var displayEvents = function (ticketObj) {
 
     eventContainerEl.appendChild(eventContainer);
   }
-
-
 };
 
 $("#events-container").on("click", function (event) {
