@@ -2,6 +2,26 @@ var eventContainerEl = document.querySelector("#events-container");
 var queryString = document.location.search;
 var eventClass = "row bg-dark rounded m-1 p-1 justify-content-between";
 var saveClass = "row bg-secondary rounded m-1 p-1 justify-content-between";
+// var page = 1;
+// var totalPages = 0;
+// var pageChangeObj = [];
+
+// $('#page-up').on('click', function() {
+//   if (page <= (totalPages - 1)) {
+//     page++;
+//     searchStrings(queryString);
+//   }
+// });
+
+// $('#page-down').on('click', function() {
+//   if (page > 1) {
+//     page--;
+//     searchStrings(queryString);
+//   } else if (page = 0) {
+//     page = 1;
+//     searchStrings(queryString);
+//   }
+// });
 
 //modal return button listener
 $("#return-button").click(function (event) {
@@ -19,7 +39,7 @@ var searchStrings = function (queryString) {
   //extract startDate from start parameter
   var startString = splitQuery[1];
   var splitStart = startString.split("=");
-  var startSearch = splitStart[1];
+  var startSearch = moment(splitStart[1]).format("YYYY-MM-DD");
   //extract endDate from end parameter
   var endString = splitQuery[2];
   var splitEnd = endString.split("=");
@@ -53,9 +73,11 @@ var getEventsRepos = function (citySearch, startSearch, endSearch) {
           } else {
             var eventsArray = data._embedded.events;
             //send fetch data to function that will gather data needed for display  consol
-            console.log(eventsArray);
+            // displayPage(data.page.totalPages);
             createEventArray(eventsArray, start, end);
             getGeoCoord(citySearch);
+            // console.log(page);
+            // console.log(eventsArray);
           }
         });
       } else {
@@ -63,7 +85,6 @@ var getEventsRepos = function (citySearch, startSearch, endSearch) {
       }
     })
     .catch(function (error) {
-      console.log("unable to connect");
       $("#connect-modal").modal("show");
     });
 };
@@ -101,7 +122,6 @@ var getGeoCoord = function (citySearch) {
   fetch(geoUrl).then(function (response) {
     if (response.ok) {
       response.json().then(function (data) {
-        console.log(data);
         getTouristAttraction(data);
       });
     } else {
@@ -125,9 +145,7 @@ var getTouristAttraction = function (data) {
   fetch(tourUrl).then(function (response) {
     if (response.ok) {
       response.json().then(function (data) {
-        // console.log(data);
         var place = data.features;
-        console.log(place);
         displayTourism(place);
       });
     } else {
@@ -176,6 +194,7 @@ var displayEvents = function (ticketObj) {
     var urlEl = document.createElement("a");
     nameEl.className = "text-center link";
     urlEl.href = eventUrl;
+    urlEl.setAttribute("target", "_blank");
     urlEl.textContent = "Go to Event";
 
     eventRow.append(nameEl, dateEl, urlEl);
@@ -187,8 +206,20 @@ var displayEvents = function (ticketObj) {
 
 $("#events-container").on("click", function (event) {
   var event = event.target;
+
   $(event).closest("li").toggleClass("bg-dark bg-secondary");
 });
+
+// $("#tourism-container").on("click", function (event) {
+//   var event = event.target;
+
+//   $(event).closest("li").toggleClass("bg-secondary");
+// });
+
+var saveEvents = function(eventsArray) {
+  localStorage.setItem("eventsArray",JSON.stringify(eventsArray));
+  window.location.href = "./myTrips.html"
+}
 
 $("#save-btn").on("click", function () {
   var splitQuery = queryString.split("&");
@@ -215,9 +246,9 @@ $("#save-btn").on("click", function () {
     var tempArray = [a, b, c];
     eventsArray.push(tempArray);
   }
-  console.log(eventsArray);
+  saveEvents(eventsArray)
 
-  localStorage.eventsArray = JSON.stringify(eventsArray);
 });
 
 searchStrings(queryString);
+

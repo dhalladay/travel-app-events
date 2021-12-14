@@ -4,7 +4,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Event Search</title>
+  <title>Chrip | Event Search</title>
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.3.1/css/bootstrap.min.css">
   <link href="../assets/CSS/style.css" rel="stylesheet">
 </head>
@@ -12,7 +12,7 @@
 <body>
   <!-- navigation -->
   <header>
-    <h1><a href="/">Trip Planner</a></h1>
+    <h1><a href="/">Chrip</a></h1>
     <nav>
       <!-- Unordered list element -->
       <ul>
@@ -26,15 +26,21 @@
       </ul>
     </nav>
   </header>
-  <main class="container">
-    <button id="save-btn" type="submit">Save to</button>
-
-    <div class="row">
+  <main class="container">    
+    <div class="row justify-content-between">
       <!-- ticketmaster events  -->
-      <div id="events-container"></div>
-
+      <div id="upcoming-events" class="col rounded shadow">
+        <h2>Events</h2>
+        <p>Select events below by clicking on them.</p>
+        <div class="col">
+          <button id="save-btn" class="btn btn-light rounded shadow" type="submit">Save Events</button>
+        </div>
+        <div id="events-container"></div>
+      </div>
       <!-- tourist attractions -->
-      <div id="tourism-container"></div>
+      <div id="tourist-locations" class="col rounded shadow">
+        <div id="tourism-container"></div>
+      </div>
     </div>
   </main>
 
