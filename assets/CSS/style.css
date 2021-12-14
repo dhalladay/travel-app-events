@@ -93,7 +93,10 @@ section {
     flex-wrap: wrap;
     align-items: flex-start;
     float: center;
+    background-repeat: no-repeat;
+    background-size: cover;
     }
+
     #my-trips {
       height: 89%;
       text-align: center;
@@ -151,10 +154,6 @@ h2{
   font-size: 30px;
 }
 
-
-
-
-
 #upcoming-trip {
   list-style: none;
   padding: 15px;
@@ -175,6 +174,16 @@ h2{
   margin: 6px 0;
   border: none;
   border-radius: 5px;
+}
+
+/* events.html css styling */
+
+#upcoming-events, #tourist-locations, #trip-content {
+  background-color: rgba(0, 0, 0, 0.5)
+}
+
+.events-container {
+  background:rgba(0, 0, 0, 0.5)
 }
 
 /* MEDIA QUERY FOR TABLETS AND SMALLER */
