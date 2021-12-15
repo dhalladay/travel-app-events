@@ -3,7 +3,9 @@
   padding: 0;
   /* box-sizing: border-box; */
 }
-html, body, main {
+html,
+body,
+main {
   height: 100%;
   margin: 0;
 }
@@ -65,7 +67,7 @@ header nav ul li a:hover {
   text-shadow: none;
 }
 
-.container { 
+.container {
   width: 100%;
   padding-left: 0px;
   padding-right: 0px;
@@ -88,7 +90,7 @@ section {
   background-repeat: no-repeat;
   background-size: cover;
   height: 100%;
-  }
+}
 
 #my-trips {
   height: 89%;
@@ -100,7 +102,7 @@ section {
   flex-wrap: wrap;
   align-items: flex-start;
   float: center;
-  }
+}
 
 .primary-border {
   border-color: #ee6a49;
@@ -110,7 +112,7 @@ section {
   border-color: #ffffff;
 }
 
-h2{
+h2 {
   font-size: 40px;
   color: rgb(255, 255, 255);
   text-shadow: 0 0 10px rgb(0, 0, 0);
@@ -118,18 +120,19 @@ h2{
   margin-bottom: 40px;
 }
 
-#plan-form{
+#plan-form {
   width: 100%;
   margin: 30px;
 }
 .form-group {
   margin-bottom: 60px;
 }
-#start-date-div, #end-date-div {
+#start-date-div,
+#end-date-div {
   margin-bottom: 20px;
 }
 
-.labels{
+.labels {
   color: white;
   text-shadow: 0 0 10px rgb(0, 0, 0);
   font-size: 25px;
@@ -162,38 +165,53 @@ h2{
 .list-group-item {
   background-color: #f08d14;
   color: whitesmoke;
-  margin: 6px 0;
+  margin: 10px 0;
   border: none;
   border-radius: 5px;
   width: 100%;
+  font-size: 20px;
+}
+
+/* fist page form  */
+#city-input,
+#start-date-input,
+#end-date-input {
+  border: none;
+  border-radius: 10px;
 }
 
 /* events.html specific css styling */
-
-
-#upcoming-events {
-  margin: 20px 0px;
+#save-btn{
+  margin-bottom: 10px;
 }
 
+#upcoming-events,
 #tourist-locations {
-  margin: 20px 0px 20px 40px;
+  margin: 20px;
 }
 
-#upcoming-events, #tourist-locations, #trip-content {
-  background-color: rgba(0, 0, 0, 0.5)
+#tourism-container{
+  margin-bottom: 20px;
+}
+
+#upcoming-events,
+#tourist-locations,
+#trip-content {
+  background-color: rgba(0, 0, 0, 0.5);
 }
 
 .events-container {
-  background:rgba(0, 0, 0, 0.5)
+  background: rgba(0, 0, 0, 0.5);
 }
 
-.btn-light:hover, .btn-light:active {
+.btn-light:hover,
+.btn-light:active {
   background-color: rgba(0, 0, 0, 0.05);
 }
 
 .event-list:hover {
   transform: scale(1.1);
-  transition: .2s;
+  transition: 0.2s;
 }
 
 /* mytrips specific styling */
@@ -204,16 +222,15 @@ h2{
 
 /* MEDIA QUERY FOR TABLETS AND SMALLER */
 @media screen and (max-width: 770px) {
-
   #planTripsHomePage {
     width: 100%;
-    font-size:calc(8px + 1.5vw);
+    font-size: calc(10px + 1.5vw);
     height: 100%;
   }
- 
-  header h1{
+
+  header h1 {
     height: 30px;
-    font-size:calc(25px + 1.5vw);
+    font-size: calc(25px + 1.5vw);
     margin-left: 8px;
     margin-top: 15px;
   }
@@ -221,39 +238,60 @@ h2{
   header nav ul {
     margin: 10px 10px;
   }
-  
+
   #submit-trip {
     font-size: 20px;
     margin-top: 40px;
   }
-  h2{
+  h2 {
     margin-top: 10px;
     margin-bottom: 20px;
-    font-size:calc(8px + 1.5vw)
+    font-size: calc(8px + 1.5vw);
   }
 
-  h3{
-    font-size:calc(8px + 1.5vw)
+  h3 {
+    font-size: calc(8px + 1.5vw);
   }
-  .labels{
+  .labels {
     width: 100%;
     margin-top: -30px;
   }
   .form-group {
     margin-bottom: 30px;
   }
+
+  #city-input,
+  #start-date-input,
+  #end-date-input {
+    border-radius: 5px;
+    height: 35px;
+  }
 }
 
 @media screen and (max-width: 568px) {
- 
   header nav ul li a {
-    font-size:calc(18px + 1.5vw);
+    font-size: calc(18px + 1.5vw);
   }
-  #plan-form{
+  #plan-form {
     width: 80%;
-    font-size:calc(8px + 1.5vw);
+    font-size: calc(10px + 1.5vw);
   }
   #submit-trip {
     margin-top: 10px;
   }
+
+  #upcoming-events, #tourist-locations{
+    width: 90%;
+  }
+
+  .list-group-item{
+    font-size: 15px;
+  }
+
+  #city-input,
+#start-date-input,
+#end-date-input {
+  border-radius: 3px;
+  height: 30px;
+}
 }
