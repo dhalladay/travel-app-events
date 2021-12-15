@@ -84,6 +84,41 @@
       </div>
     </div>
   </div>
+  <!-- tourism api connection error modal -->
+  <div id="tourism-modal" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="tourism-error"
+    aria-describedby="tourism-help" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h3 id="tourism-error">We are unable to connect</h3>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+          <p id="tourism-help">We won't be able to display tourist locations.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+  <!-- get city failed modal -->
+  <div id="get-city-modal" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="get-city-error"
+    aria-describedby="get-city-help" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h3 id="get-city-error">We are unable to determine the city</h3>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+          <p id="get-city-help">Would you like to return to search and try again?</p>
+          <button id="city-return-button" class="btn-primary" type="submit">Return to Search</button>
+        </div>
+      </div>
+    </div>
+  </div>
   <!-- script references -->
   <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.3.1/js/bootstrap.min.js"></script>

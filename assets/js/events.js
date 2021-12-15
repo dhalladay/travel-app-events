@@ -28,6 +28,10 @@ $("#return-button").click(function (event) {
   event.preventDefault();
   window.location.href = "../index.html";
 });
+$("#city-return-button").click(function (event) {
+  event.preventDefault();
+  window.location.href = "../index.html";
+});
 
 var searchStrings = function (queryString) {
   //split string into key pairs
@@ -125,7 +129,7 @@ var getGeoCoord = function (citySearch) {
         getTouristAttraction(data);
       });
     } else {
-      console.log("Error: City Not Found");
+      $("#get-city-modal").modal("show");
     }
   });
 };
@@ -149,7 +153,7 @@ var getTouristAttraction = function (data) {
         displayTourism(place);
       });
     } else {
-      console.log("Error: Tourist Attractions Not Found");
+      $("#tourism-modal").modal("show");
     }
   });
 };
