@@ -2,7 +2,8 @@
 
 We created an app to tell you what is going on wherever and whenever you might be visiting a new place.
 
-![Workday Planner Screenshot](./assets/images/travel-app-events.png?raw=true)
+![Workday Planner Screenshot](./assets/images/Chrip.png)
+
 
 ## Purpose
 
@@ -46,3 +47,4 @@ https://dhalladay.github.io/travel-app-events/
 - Add friends to your trip
 - Budget planning
 - Add a packing list
+

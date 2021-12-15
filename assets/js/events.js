@@ -156,7 +156,7 @@ var getTouristAttraction = function (data) {
 
 // display tourist attraction data
 var tourismContainer = $("#tourism-container");
-var tourismTitle = $("<h2>").text("Tourist Attractions");
+var tourismTitle = $("<h2>").text("Tourist Attractions").addClass("text-center");
 var tourismContent = $("<div>").addClass("list-group");
 
 var displayTourism = function (place) {
