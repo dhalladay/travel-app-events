@@ -29,18 +29,20 @@ $('#submit-trip').click(function(event) {
     //add a day to end date as ticketmaster api uses events BEFORE end date query parameter
     var endSearch = moment(startDateInput.value).format("YYYY-MM-DD");
     window.location.href = "./HTML/events.html?city=" + citySearch + "&startDate=" + startSearch + "&endDate=" + endSearch;
-  } else if (startSearch > endSearch) {
-    $("#date-order-modal").modal("show");
   } else {
     var citySearch = cityNameInput.value
-      .trim()
-      .toLowerCase()
-      .replaceAll(" ", "+");
+    .trim()
+    .toLowerCase()
+    .replaceAll(" ", "+");
     var startSearch = moment(startDateInput.value).format("YYYY-MM-DD");
     //add a day to end date as ticketmaster api uses events BEFORE end date query parameter
-
+    
     var endSearch = moment(endDateInput.value).format("YYYY-MM-DD");
-    window.location.href = "./HTML/events.html?city=" + citySearch + "&startDate=" + startSearch + "&endDate=" + endSearch;  
+    if (startSearch > endSearch) {
+      $("#date-order-modal").modal("show");
+    } else {
+      window.location.href = "./HTML/events.html?city=" + citySearch + "&startDate=" + startSearch + "&endDate=" + endSearch;  
+    }
   };
 });
 
