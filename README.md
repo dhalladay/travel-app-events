@@ -4,6 +4,7 @@ We created an app to tell you what is going on wherever and whenever you might b
 
 ![Workday Planner Screenshot](./assets/images/Chrip.png)
 
+
 ## Purpose
 
 When you're travelling you want to make the most of your time. Our app will tell you what is happening and give you a list of highly rated places to visit while you're in town.
@@ -46,3 +47,4 @@ https://dhalladay.github.io/travel-app-events/
 - Add friends to your trip
 - Budget planning
 - Add a packing list
+
